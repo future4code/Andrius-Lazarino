@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+li {
+    list-style-type: none;
+    display: inline;
+    padding-left: 30px;
+}
+h1 {
+    color: #CC6600;
+    text-align: center;
+    padding-bottom: 20px;
+    padding-top: 20px;;
+}
+#menu {
+    background-color: #FFE6CC;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+#corpo {
+    background-color: #E0E0E0;
+    width: 800px;
+    text-align: center;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+#rodape {
+    background-color: #FFE6CC;
+    padding-bottom: 30px;
+    padding-top: 20px;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
