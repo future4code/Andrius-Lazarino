@@ -31,7 +31,6 @@ img {
 }
 
 div>p:first-child {
-    display: block;
     width: 200px;
     margin-left: auto;
     margin-right: auto;
@@ -111,7 +110,6 @@ div:last-child {
 table {
     width: 60%;
 }
-
 td button {
     background-color: #fadf63;
     width: 150px;
@@ -122,6 +120,9 @@ td button {
 
 td button:hover {
     background-color: #c4ad31;
+}
+td {
+    text-align: center;
 }
 
 .container-do-search {
