@@ -26,6 +26,10 @@ button:focus {
     color: white;
 }
 
+button:visited {
+    color: white;
+}
+
 img {
     width: 65px;
     height: 65px;
@@ -152,4 +156,8 @@ td {
 
 #back-button:hover {
     background-color: #635a3d
+}
+
+a:visited {
+    color: white;
 }
