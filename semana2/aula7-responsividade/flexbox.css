@@ -1,0 +1,75 @@
+body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+#lista-lateral{
+    width: 25%;
+    height: 100vh;
+    background-color: grey;
+}
+
+#corpo{
+    width: 75%;
+}
+
+#topo{
+    background-color: red;    
+    height: 100px;
+}
+.azul, .amarelo, .verde, .branco{
+    height: 150px;
+} 
+.azul{
+    background-color: blue;
+    
+}
+.amarelo{
+    background-color: yellow;
+}
+.verde{
+    background-color: green;
+}
+.bloco-maior{
+    background-color: black;
+    width: 100%;
+}
+
+.blocos{
+    width: 100%;
+    display: flex;
+}
+@media screen and (max-width: 1000px){
+    .blocos{
+        flex-wrap: wrap;
+    }
+    .verde{
+    width: 300px;
+    }
+}
+@media screen and (max-width: 480px){
+    #lista-lateral{
+        display: none;
+    }
+}
+.blocos div{
+    border: solid 1px black;
+    margin: 1%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+}
+.blocosmeio{
+    display: flex;
+    height: 50%;
+}
+
+.blocosmeio div{
+    margin: 1%;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
