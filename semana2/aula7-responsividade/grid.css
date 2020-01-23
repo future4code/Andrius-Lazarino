@@ -1,0 +1,92 @@
+body{
+    margin: 0;
+    padding: 0;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+body div{
+    text-align: center;
+}
+#topo{
+    background-color: red;
+    grid-column-start: 2;
+    grid-column-end: 5;
+}
+.azul{
+    background-color: blue;
+}
+.amarelo{
+    background-color: yellow;
+}
+.verde{
+    background-color: green;
+}
+.blocomeio{
+    grid-column-start: 2;
+    grid-column-end: 5;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 40vh;
+}
+@media screen and (max-width: 600px){
+    .blocomeio{
+        grid-column-start: 1;
+        grid-column-end: 5;
+    }
+}
+.bloco-maior{
+    background-color: black;
+    color: white;
+    margin: 1vw;
+}
+#topo, .azul, .amarelo, .verde, .branco{
+    border: solid 1px black;
+    height: 15vh;
+}
+
+.azul, .amarelo, .verde, .branco{
+    margin: 1vw;
+}
+#lista-lateral{
+    background-color: grey;
+    grid-row-start: 1;
+    grid-row-end: 6;
+    text-align: left;
+} 
+@media screen and (max-width:600px){
+    #lista-lateral{
+        display: none;
+    }
+    #topo{
+        grid-column-start: 1;
+        grid-column-end: 5;
+    }
+}
+.blocos{
+    grid-column-start: 2;
+    grid-column-end: 5;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+@media screen and (max-width: 500px){
+    .blocos div{
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+}
+@media screen and (max-width: 600px){
+    .blocos{
+        grid-column-start: 1;
+        grid-column-end: 5;
+    }
+}
+@media screen and (max-width: 800px){
+    .blocos{
+        grid-template-columns: 1fr 1fr;
+    }
+    .verde, #ultimo{
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+}
