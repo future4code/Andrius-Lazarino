@@ -106,3 +106,4 @@
 //         console.log("Errrrrrrrou, é maior")
 //     }
 // }
+// // Foi facil fazer essa alteração porque já conhecia um pouco sobre essa função
