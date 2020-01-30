@@ -117,9 +117,53 @@
 //                 }
 //             }
 //         }
-        
+
 //     }
 // }
 // else{
 //     console.log("Invertebrado")
 // }
+
+
+
+// DESAFIO
+
+let nome = prompt("Insira o nome completo: ")
+let tipoJogo = prompt("Tipo de jogo, internacional[IN], doméstico[DO]: ")
+let etapaJogo = prompt("Estapa do jogo, semi-final[SF], terceiro lugar[DT], final[FI]: ")
+let categoria = Number(prompt("Categoria, [1,2,3,4]: "))
+let quantidadeIngressos = Number(prompt("Quantidade de ingressos: "))
+let precoTotal = 0
+const categoriaPrecoSf = [1320, 880, 550, 220]
+const categoriaPrecoDt = [660, 440, 330, 170]
+const categoriaPrecoFi = [1980, 1320, 880, 330]
+
+console.log("---Dados da compra---")
+console.log("Nome do cliente: ", nome)
+if (tipoJogo === "in") {
+    console.log("Tipo do jogo: Internacional")
+}
+else {
+    console.log("Tipo do jogo: Nacional")
+}
+switch (etapaJogo) {
+    case "sf":
+        console.log("Etapa do jogo: Semi-final")
+        precoTotal = categoriaPrecoSf[categoria-1] * quantidadeIngressos
+        break;
+    case "dt":
+        console.log("Etapa do jogo: Terceiro lugar")
+        precoTotal = categoriaPrecoDt[categoria-1] * quantidadeIngressos
+        break;
+    default:
+        console.log("Etapa do jogo: Final")
+        precoTotal = categoriaPrecoFi[categoria-1] * quantidadeIngressos
+        break;
+}
+console.log("Categoria: ", categoria)
+console.log("Quantidade de Ingressos: ", quantidadeIngressos)
+console.log("---Valores---")
+if (tipoJogo === "in"){
+    precoTotal *= 4.10
+}
+console.log("Valor do ingresso: ", precoTotal)
