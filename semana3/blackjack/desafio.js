@@ -47,10 +47,12 @@ while (confirm("Quer iniciar uma nova rodada?")) {
       console.log("Valor de computador: ", computador[0])
    }
 
-   if ((usuario[0] > computador[0]) && usuario[0] <= 21) {
-      ganhador = "O usuário ganhou!"
+   if ((usuario[0] <= 21)) {
+      if ((usuario[0] > computador[0]) || computador[0] > 21){
+         ganhador = "O usuário ganhou!"
+      }
    }
-   else if ((usuario[0] < computador[0]) && computador[0] <= 21) {
+   else if (computador[0] > usuario[0]) {
       ganhador = "O computador ganhou!"
    }
    else {
