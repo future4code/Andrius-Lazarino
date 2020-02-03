@@ -32,7 +32,6 @@ while (confirm("Quer iniciar uma nova rodada?")) {
 
    usuario[1] = (usuario[2].texto + " " + usuario[3].texto)
    computador[1] = (computador[2].texto + " " + computador[3].texto)
-   console.log("computador iniciando: " + computador[1])
    let jogadas
    while (usuario[0] < 21 && confirm("Suas cartas são " + usuario[1] + ". A carta revelada do computador é " + computador[3].texto + "\n Deseja comprar mais carta?")) {
       let novaCarta = comprarCarta()
@@ -44,18 +43,16 @@ while (confirm("Quer iniciar uma nova rodada?")) {
       let novaCarta = comprarCarta()
       computador[1] += " " + novaCarta.texto
       computador[0] += novaCarta.valor
-      console.log("Valor de computador: ", computador[0])
    }
-
    if ((usuario[0] <= 21)) {
       if ((usuario[0] > computador[0]) || computador[0] > 21){
          ganhador = "O usuário ganhou!"
       }
    }
-   else if (computador[0] > usuario[0]) {
+   if (((computador[0] > usuario[0])||(usuario[0] > 21)) && computador[0] <= 21) {
       ganhador = "O computador ganhou!"
    }
-   else {
+   else if ((computador[0]===usuario[0]) || ((computador[0]>21) && (usuario[0] > 21))) {
       ganhador = "Empate!"
    }
    alert("Suas cartas são " + usuario[1] + ". Sua pontuação é " + usuario[0] + "\n As cartas do computador são " + computador[1] + ". A pontuação do computador é " + computador[0] + ".\n" + ganhador)
