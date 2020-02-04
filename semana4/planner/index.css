@@ -1,0 +1,29 @@
+body{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+main{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 2%;
+}
+main>div{
+    border-top: dotted 2px rgb(88, 88, 88);
+    border-right: solid 2px rgb(88, 88, 88);
+    border-left: solid 2px rgb(88, 88, 88);
+    padding: 5%;
+    width: 15%;
+    margin-bottom: 5%;
+}
+button{
+    width: 15%;
+    height: 50px;
+}
+input{
+    text-align: center;
+}
+input, ul{
+    margin-bottom: 2%;
+}
