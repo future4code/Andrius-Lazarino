@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <script src="index.js" defer></script>
+  <link href="index.css" type="text/css" rel="stylesheet" />
+  <title>Document</title>
+</head>
+
+<body>
+  <header>
+    <h1>Planner</h1>
+    <input value="Digite a tarefa" id="tarefa" type="text" onclick="apagaTexto()" onclose="mostraTexto() on">
+    <div>   
+      <input type="radio" name="dia" value="segunda">SEGUNDA
+      <input type="radio" name="dia" value="terca">TERÇA
+      <input type="radio" name="dia" value="quarta">QUARTA
+      <input type="radio" name="dia" value="quinta">QUINTA
+      <input type="radio" name="dia" value="sexta">SEXTA
+      <input type="radio" name="dia" value="sabado">SÁBADO
+      <input type="radio" name="dia" value="domingo">DOMINGO
+    </div>
+    <button onclick="criarTarefa()">Criar tarefa</button>
+
+  </header>
+
+  <main>
+    <div id="dia-1">
+      <h3>SEGUNDA</h3>
+      <ul class="conteudo">
+      </ul>
+    </div>
+    <div id="dia-2">
+      <h3>TERÇA</h3>
+      <ul class="conteudo">
+      </ul>
+    </div>
+    <div id="dia-3">
+      <h3>QUARTA</h3>
+      <ul class="conteudo">
+      </ul>
+    </div>
+    <div id="dia-4">
+      <h3>QUINTA</h3>
+      <ul class="conteudo">
+      </ul>
+    </div>
+    <div id="dia-5">
+      <h3>SEXTA</h3>
+      <ul class="conteudo">
+      </ul>
+    </div>
+    <div id="dia-6">
+      <h3>SABADO</h3>
+      <ul class="conteudo">
+      </ul>
+    </div>
+    <div id="dia-7">
+      <h3>DOMINGO</h3>
+      <ul class="conteudo">
+      </ul>
+    </div>
+  </main>
+</body>
+
+</html>
