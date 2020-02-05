@@ -1,0 +1,23 @@
+body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+input:nth-child(1), input:nth-child(2) {
+    width: 25%;
+}
+input:nth-child(3) {
+    width: 70%;
+}
+button{
+    margin-top: 1%;
+}
+section{
+    text-align: center;
+}
+section>p{
+    text-align: right;
+}
