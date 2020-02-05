@@ -21,3 +21,9 @@ section{
 section>p{
     text-align: right;
 }
+.texto{
+    text-align: center;
+}
+img{
+    width: 400px;
+}
