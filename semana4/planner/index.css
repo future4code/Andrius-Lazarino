@@ -2,6 +2,7 @@ body{
     margin: 0;
     padding: 0;
     text-align: center;
+    font-family: 'Roboto', sans-serif;
 }
 main{
     display: flex;
@@ -17,6 +18,16 @@ main>div{
     width: 15%;
     margin-bottom: 5%;
 }
+@media screen and (max-width: 480px){
+    main>div{
+        border-top: dotted 2px rgb(88, 88, 88);
+        border-right: solid 2px rgb(88, 88, 88);
+        border-left: solid 2px rgb(88, 88, 88);
+        padding: 5%;
+        width: 100%;
+        margin-bottom: 5%;
+    }
+}
 button{
     width: 15%;
     height: 50px;
@@ -26,4 +37,50 @@ input{
 }
 input, ul{
     margin-bottom: 2%;
+}
+#dias{
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+}
+@media screen and (max-width:480px){
+    #dias{
+        font-size: 34px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .diasTemplate{
+        background-color: rgb(94, 105, 105);
+        width: 45%;
+        border: solid 1px rgb(45, 116, 92);
+    }
+
+    #tarefa{
+        display: block;
+    }
+    header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 36px;
+    }
+    input {
+        width: 80%;
+        font-size: 34px;
+    }
+    select {
+        font-size: 34px;
+    }
+    button {
+        width: 80%;
+        height: 20%;
+        font-size: 38px;
+        margin-bottom: 5%;
+    }
+}
+h1 {
+    color: rgb(45, 116, 92);
 }
