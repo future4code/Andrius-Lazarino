@@ -1,6 +1,7 @@
 let listaDespesas = []
 const despesasDetalhadas = document.getElementById("despesasDetalhadas")
 const extratos = document.getElementById("extrato")
+
 limparFiltro()
 function cadastrar() {
     const valor = document.getElementById("valor")
@@ -9,7 +10,6 @@ function cadastrar() {
     switch (tipoDespesa.value) {
         case 'despesacasa':
             tipo = "Despesa da Casa"
-            console
             break;
         case 'despesafesta':
             tipo = "Despesa de festas"
@@ -79,25 +79,42 @@ function filtrar() {
     const filtroTipoDespesa = document.getElementById("filtroTipoDespesa")
     const valorMinimo = document.getElementById("valorMinimo")
     const valorMaximo = document.getElementById("valorMaximo")
-    if ((filtroTipoDespesa.value !== "") && (valorMinimo.value !== "") && (valorMaximo.value !== "")) {
-        const filtroListaDespesas = listaDespesas.filter((lista, index, array) => {
-            return (lista.valor >= valorMinimo.value) && (lista.valor <= valorMaximo.value) && (lista.tipoDespesa === filtroTipoDespesa.value)
-        })
-        
-        for (elemento of filtroListaDespesas) {
-            despesasDetalhadas.innerHTML += "<p>Valor: " + elemento.valor + "</p><p>Tipo: " + elemento.tipoDespesa + "</p><p>Descrição: " + elemento.descricao + "</p>"
+    
+        if ((filtroTipoDespesa.value !== "") && (valorMinimo.value !== "") && (valorMaximo.value !== "")) {
+            let tipo
+            const filtroListaDespesas = listaDespesas.filter((lista, index, array) => {
+                console.log(lista)             
+                switch (filtroTipoDespesa.value) {
+                    case 'despesacasa':
+                        tipo = "Despesa da Casa"
+                        console.log("entrou aqui")
+
+                        break;
+                    case 'despesafesta':
+                        tipo = "Despesa de festas"
+                        break;
+                    case 'despesaviagem':
+                        tipo = "Despesa de Viagem"
+                        break;
+                    case 'despesaalimentacao':
+                        tipo = "Despesa da Alimentação"
+                        break;
+                    case 'despesatransporte':
+                        tipo = "Despesa de transporte"
+                        break;
+                }
+                return (lista.valor >= valorMinimo.value) && (lista.valor <= valorMaximo.value) && (lista.tipoDespesa === tipo)
+            })
+            despesasDetalhadas.innerHTML += "<p>Valor: " + elemento.valor + "</p><p>Tipo: " + tipo + "</p><p>Descrição: " + elemento.descricao + "</p>"
+        }
+        else {
+            alert("Todos os campos do filtro são obrigatorios")
         }
     }
-    else {
-        alert("Todos os campos do filtro são obrigatorios")
+    class Despesa {
+        constructor(valor, tipoDespesa, descricao) {
+            this.valor = valor
+            this.tipoDespesa = tipoDespesa
+            this.descricao = descricao
+        }
     }
-}
-
-class Despesa {
-    constructor(valor, tipoDespesa, descricao) {
-        this.valor = valor
-        this.tipoDespesa = tipoDespesa
-        this.descricao = descricao
-    }
-
-}
