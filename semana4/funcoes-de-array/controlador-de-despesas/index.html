@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <script src="index.js" defer></script>
+  <link href="index.css" type="text/css" rel="stylesheet" />
+  <title>AULA16</title>
+</head>
+
+<body>
+  <section>
+    <h2>Cadastro</h2>
+    Valor:
+    <input type="number" id="valor">
+    Tipo da despesa:
+    <select name="tipoDespesa" id="tipoDespesa">
+      <option value="despesacasa">Casa</option>
+      <option value="despesafesta">Festas</option>
+      <option value="despesaviagem">Viagem</option>
+      <option value="despesaalimentacao">Alimentação</option>
+      <option value="despesatransporte">Transporte</option>
+    </select>
+    Descrição:
+    <input type="text" id="descricao">
+    <button onclick="cadastrar()">Cadastrar Despesa</button>
+  </section>
+
+  <section>
+    <h2>Lista de despesas</h2>
+    <h3>Filtro:</h3>
+    Tipo:
+    <select name="filtroTipoDespesa" id="filtroTipoDespesa">
+      <option value="despesacasa">Casa</option>
+      <option value="despesafesta">Festas</option>
+      <option value="despesaviagem">Viagem</option>
+      <option value="despesaalimentacao">Alimentação</option>
+      <option value="despesatransporte">Transporte</option>
+    </select>
+    Valor Mínimo
+    <input type="text" id="valorMinimo">
+    Valor Máximo
+    <input type="text" id="valorMaximo">
+    <button onclick="filtrar()">Filtrar</button>
+    <button onclick="limparFiltro()">Limpar</button>
+    <h3>Despesas Filtradas:</h3>
+    <div id="despesasDetalhadas">
+    </div>
+  </section>
+
+  <section>
+    <h2>Extrato</h2>
+    <div id="extrato"></div>
+  </section>
+</body>
+
+</html>

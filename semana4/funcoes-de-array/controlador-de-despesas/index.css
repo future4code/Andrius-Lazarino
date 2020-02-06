@@ -1,0 +1,10 @@
+body{
+    text-align: center;
+}
+section{
+    border: dotted 1px black;
+}
+
+#despesasDetalhadas>p{
+    /* width: 400px; */
+}
