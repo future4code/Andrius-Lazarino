@@ -22,6 +22,31 @@
 // 3. falta ler os valores, quantidadeDeNumerosPares também declarado de forma errado deveria ser LET para permitir seu incremento, console imprimindo errado
 // logicaProgramaçãoExercicio3()
 
+// 4. 
+//logicaProgramaçãoExercicio4()
+
+// 5 .
+
+
+
+
+
+function logicaProgramaçãoExercicio4() {
+    const a = Number(prompt("Valor de a: "))
+    const b = Number(prompt("Valor de b: "))
+    const c = Number(prompt("Valor de c: "))
+
+    if((a===b)&&(a===c)){
+        console.log("Esse triangulo é equilátero")
+    }
+    else if((a===b)||(a===c)||(b===c)){
+        console.log("Esse triangulo é isósceles")
+    }
+    else{
+        console.log("Esse triangulo é escaleno")
+    }
+}
+
 
 function logicaProgramaçãoExercicio3() {
     let valor = Number(prompt("Insira um valor: "))
