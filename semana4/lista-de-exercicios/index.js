@@ -19,7 +19,23 @@
 
 // 2. a. FALSE; b. TRUE; c. TRUE; d. FALSE; e. TRUE
 
+// 3. falta ler os valores, quantidadeDeNumerosPares também declarado de forma errado deveria ser LET para permitir seu incremento, console imprimindo errado
+// logicaProgramaçãoExercicio3()
 
+
+function logicaProgramaçãoExercicio3() {
+    let valor = Number(prompt("Insira um valor: "))
+    let quantidadeDeNumerosPares = 0
+    let i = 0
+    while (quantidadeDeNumerosPares !== valor) {
+        if ((i % 2) === 0) {
+            quantidadeDeNumerosPares++
+            console.log(i + " ")
+        }
+        i++
+    }
+
+}
 function logicaProgramaçãoExercicio1() {
     const array = [1, 5, 15, 45, 64, 78, 98, 154, 168]
     array.forEach((numero, index, array) => {
