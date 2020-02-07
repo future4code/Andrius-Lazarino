@@ -11,6 +11,9 @@
 
 // 4. Compara os numeros para ver quem é o maior e menor da lista, valores impressos no console: -10; 1590
 
+
+
+
 //Exercícios de lógica de Programação ------------------------------------------------------------------------------------------------------
 
 // 1. "forEach" utilizado para percorrer a array para mostrar seus valores ou modificalos, com "map" criamos uma nova array com o mesmo tamanho mas
@@ -22,24 +25,29 @@
 // 3. falta ler os valores, quantidadeDeNumerosPares também declarado de forma errado deveria ser LET para permitir seu incremento, console imprimindo errado
 // logicaProgramacaoExercicio3()
 
-// 4. 
+// // 4. 
 // logicaProgramacaoExercicio4()
 
-// 5 .<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>****************(((((((&&&&)))))))
+// // 5 .
 
-//logicaProgramacaoExercicio5()
+// logicaProgramacaoExercicio5()
 
 
-//Exercícios de Funções ------------------------------------------------------------------------------------------------------
 
-// 1.  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>()))))))((((((((***))))))))
-//funcaoExercicio1()
+
+// //Exercícios de Funções ------------------------------------------------------------------------------------------------------
+
+// // 1.
+// funcaoExercicio1()
 
 // // 2. 
 // let funcaoExercicio2 = () =>{
 //     alert("Hello Future4")
 // }
 // funcaoExercicio2()
+
+
+
 
 //Exercícios de Objetos ------------------------------------------------------------------------------------------------------
 
@@ -54,6 +62,8 @@
 
 // // 4.
 // objetoExercicio4()
+
+
 
 
 //Exercícios de Array ----------------------------------------------------------------------------------------------------------
@@ -85,8 +95,8 @@
 // // 4.
 // arrayExercicio4()
 
-// 5.
-arrayExercicio5()
+// // 5.
+// arrayExercicio5()
 
 
 
@@ -341,25 +351,27 @@ function objetoExercicio2() {
 
 
 function funcaoExercicio1() {
-    const array = [20, 2, 30, 40, 65, 78, 59]
-    let primeiroMaior = 0
+    const array = [20, 22, 5, 3, 33, 10,75,89, 35, 40, 59]
+    let primeiroMaior = array[0]
+    let primeiroMenor = array[0]
 
-    let segundoMaior = array[0]
-
+    let segundoMaior
+    let segundoMenor
+    let i=0
     for (elemento of array) {
         if (elemento > primeiroMaior) {
-            segundoMaior = primeiroMaior
+            if(i>0){
+                segundoMaior = primeiroMaior
+            }
             primeiroMaior = elemento
         }
-    }
-    let primeiroMenor = primeiroMaior
-    let segundoMenor = 0
-    for (elemento of array) {
         if (elemento < primeiroMenor) {
-            segundoMenor = primeiroMenor
+            if(i>0){
+                segundoMenor = primeiroMenor
+            }
             primeiroMenor = elemento
-
         }
+        i++
     }
 
     console.log("Segundo maior: " + segundoMaior)
@@ -430,3 +442,4 @@ function logicaProgramaçãoExercicio1() {
         console.log("Numero: " + numero)
     });
 }
+
