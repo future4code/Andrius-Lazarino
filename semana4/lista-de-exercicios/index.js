@@ -9,3 +9,5 @@
 // 3. Guarda os numeros pares e impares de uma váriavel em váriaveis diferentes, mas existe um problema as arrays estão declaradas como const oque vai resultar
 //em erro
 
+// 4. Compara os numeros para ver quem é o maior e menor da lista, valores impressos no console: -10; 1590
+
