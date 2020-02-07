@@ -79,9 +79,45 @@
 // // a.
 // arrayExercicio3A()
 
-// b.
-arrayExercicio3B()
+// // b.
+// arrayExercicio3B()
 
+// 4.
+arrayExercicio4()
+
+
+function arrayExercicio4(){
+    const consultas = [
+        { nome: "João", genero: "masculino", cancelada: true, dataDaConsulta: "01/10/2019" },
+        { nome: "Pedro", genero: "masculino", cancelada: false, dataDaConsulta: "02/10/2019" },
+        { nome: "Paula", genero: "feminino", cancelada: true, dataDaConsulta: "03/11/2019" },
+        { nome: "Márcia", genero: "feminino", cancelada: false, dataDaConsulta: "04/11/2019" }
+    ]
+
+    let array = []
+
+    for (elemento of consultas){
+        let eleEla
+        let sr
+        if(elemento.genero === "masculino"){
+            eleEla = "Lembrá-lo"
+            sr = "Sr. "
+        } else{
+            eleEla = "Lembrá-la"
+            sr = "Sra. "
+        }
+
+        if (elemento.cancelada === true){
+            
+            array.push("Olá, "+ sr + elemento.nome+". Estamos enviando esta mensagem para "+eleEla+" da sua consulta no dia "+ elemento.dataDaConsulta+". Por favor acuse o recebimento deste email.")
+        }
+        else {
+            array.push("Olá, "+ sr +elemento.nome+". Infelizmente, sua consulta marcada para o dia "+ elemento.dataDaConsulta+" foi cancelada. Se quiser, pode entrar em contato conosco para remarcá-la")
+        }
+    }
+    console.log(array)
+
+}
 
 function arrayExercicio3B() {
     const pessoas = [
