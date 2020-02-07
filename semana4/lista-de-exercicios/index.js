@@ -82,11 +82,55 @@
 // // b.
 // arrayExercicio3B()
 
-// 4.
-arrayExercicio4()
+// // 4.
+// arrayExercicio4()
+
+// 5.
+arrayExercicio5()
 
 
-function arrayExercicio4(){
+
+function arrayExercicio5() {
+    let contas = [
+        { cliente: "João", saldoTotal: 1000, compras: [100, 200, 300] },
+        { cliente: "Paula", saldoTotal: 7500, compras: [200, 1040] },
+        { cliente: "Pedro", saldoTotal: 10000, compras: [5140, 6100, 100, 2000] },
+        { cliente: "Luciano", saldoTotal: 100, compras: [100, 200, 1700] },
+        { cliente: "Artur", saldoTotal: 1800, compras: [200, 300] },
+        { cliente: "Soter", saldoTotal: 1200, compras: [] }
+    ]
+    atualizaArray()
+
+    function atualizaArray() {
+
+        contas.forEach((elemento, index, array) => {
+            switch (elemento.cliente) {
+                case "João":
+                    elemento.saldoTotal = 400
+                    break;
+                case "Paula":
+                    elemento.saldoTotal = 6260
+                    break;
+                case "Pedro":
+                    elemento.saldoTotal = -3340
+                    break;
+                case "Luciano":
+                    elemento.saldoTotal = -1900
+                    break;
+                case "Artur":
+                    elemento.saldoTotal = 1300
+                    break;
+                case "Soter":
+                    elemento.saldoTotal = 1200
+                    break;
+            }
+        })
+        console.log(contas)
+    }
+
+}
+
+function arrayExercicio4() {
     const consultas = [
         { nome: "João", genero: "masculino", cancelada: true, dataDaConsulta: "01/10/2019" },
         { nome: "Pedro", genero: "masculino", cancelada: false, dataDaConsulta: "02/10/2019" },
@@ -96,23 +140,23 @@ function arrayExercicio4(){
 
     let array = []
 
-    for (elemento of consultas){
+    for (elemento of consultas) {
         let eleEla
         let sr
-        if(elemento.genero === "masculino"){
+        if (elemento.genero === "masculino") {
             eleEla = "Lembrá-lo"
             sr = "Sr. "
-        } else{
+        } else {
             eleEla = "Lembrá-la"
             sr = "Sra. "
         }
 
-        if (elemento.cancelada === true){
-            
-            array.push("Olá, "+ sr + elemento.nome+". Estamos enviando esta mensagem para "+eleEla+" da sua consulta no dia "+ elemento.dataDaConsulta+". Por favor acuse o recebimento deste email.")
+        if (elemento.cancelada === true) {
+
+            array.push("Olá, " + sr + elemento.nome + ". Estamos enviando esta mensagem para " + eleEla + " da sua consulta no dia " + elemento.dataDaConsulta + ". Por favor acuse o recebimento deste email.")
         }
         else {
-            array.push("Olá, "+ sr +elemento.nome+". Infelizmente, sua consulta marcada para o dia "+ elemento.dataDaConsulta+" foi cancelada. Se quiser, pode entrar em contato conosco para remarcá-la")
+            array.push("Olá, " + sr + elemento.nome + ". Infelizmente, sua consulta marcada para o dia " + elemento.dataDaConsulta + " foi cancelada. Se quiser, pode entrar em contato conosco para remarcá-la")
         }
     }
     console.log(array)
