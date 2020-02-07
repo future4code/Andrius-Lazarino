@@ -59,14 +59,68 @@
 //Exercícios de Array ----------------------------------------------------------------------------------------------------------
 
 // // 1.
-// //a. 
+// // a. 
 // arrayExercicio1A()
 
-// b.
-arrayExercicio1B()
+// // b.
+// arrayExercicio1B()
+
+// // 2.
+// // a.
+// arrayExercicio2A()
+
+// // b.
+// arrayExercicio2B()
+
+// c.
+arrayExercicio2C()
 
 
+function arrayExercicio2C(){
+    const array = [1, 2, 3, 4, 5, 6]
 
+    console.log(parImpar())
+
+    function parImpar(){
+        let arrayMult = []
+        for (elemento of array){
+            if ((elemento%2)===0){
+                arrayMult.push(elemento + " é par")
+            } else{
+                arrayMult.push(elemento + " é impar")
+            }
+        }
+        return arrayMult
+    }
+}
+
+function arrayExercicio2B(){
+    const array = [1, 2, 3, 4, 5, 6]
+
+    console.log(multiplicado())
+
+    function multiplicado(){
+        let arrayMult = []
+        for (elemento of array){
+            arrayMult.push(String(elemento * 3))
+        }
+        return arrayMult
+    }
+}
+
+function arrayExercicio2A(){
+    const array = [1, 2, 3, 4, 5, 6]
+
+    console.log(multiplicado())
+
+    function multiplicado(){
+        let arrayMult = []
+        for (elemento of array){
+            arrayMult.push(elemento * 2)
+        }
+        return arrayMult
+    }
+}
 
 function arrayExercicio1B(){
     let array = [
