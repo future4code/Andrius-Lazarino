@@ -30,6 +30,37 @@
 //logicaProgramacaoExercicio5()
 
 
+//Exercícios de Funções ------------------------------------------------------------------------------------------------------
+
+// 1.  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>()))))))((((((((***))))))))
+//funcaoExercicio1()
+
+function funcaoExercicio1(){
+    const array = [20,2,30,40,65,78,59]
+    let primeiroMaior = 0
+   
+    let segundoMaior = array[0]
+    
+    for (elemento of array){
+        if(elemento>primeiroMaior){
+            segundoMaior = primeiroMaior
+            primeiroMaior = elemento      
+        }
+    }
+    let primeiroMenor = primeiroMaior
+    let segundoMenor = 0
+    for (elemento of array){
+        if(elemento<primeiroMenor){
+            segundoMenor = primeiroMenor
+            primeiroMenor = elemento
+            
+        }
+    }
+    
+    console.log("Segundo maior: " + segundoMaior)
+    console.log("Segundo menor: " + segundoMenor)
+}
+
 
 function logicaProgramacaoExercicio5(){
     let numero1 = Number(prompt("Numero 1: "))
