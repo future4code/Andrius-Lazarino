@@ -20,18 +20,45 @@
 // 2. a. FALSE; b. TRUE; c. TRUE; d. FALSE; e. TRUE
 
 // 3. falta ler os valores, quantidadeDeNumerosPares também declarado de forma errado deveria ser LET para permitir seu incremento, console imprimindo errado
-// logicaProgramaçãoExercicio3()
+// logicaProgramacaoExercicio3()
 
 // 4. 
-//logicaProgramaçãoExercicio4()
+// logicaProgramacaoExercicio4()
 
-// 5 .
+// 5 .<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>****************(((((((&&&&)))))))
+
+//logicaProgramacaoExercicio5()
 
 
 
+function logicaProgramacaoExercicio5(){
+    let numero1 = Number(prompt("Numero 1: "))
+    let numero2 = Number(prompt("Numero 2: "))
+
+    if (((numero1%numero2)===0)||((numero2%numero1)===0)){
+        console.log("São divisíveis")
+    }
+    else{
+        console.log("Não são divisíveis")
+    }
+
+    if (numero1<numero2){
+        let aux
+        aux = numero2
+        numero2 = numero1
+        numero1 = aux
+        if(numero1>0){
+            console.log("Diferença entre eles: " + (numero1-numero2))
+        }
+        else if(numero1<0){
+            console.log("Nao entrou")
+            console.log("Diferença entre eles: " + (numero1-numero2))
+        }
+    }
+}
 
 
-function logicaProgramaçãoExercicio4() {
+function logicaProgramacaoExercicio4() {
     const a = Number(prompt("Valor de a: "))
     const b = Number(prompt("Valor de b: "))
     const c = Number(prompt("Valor de c: "))
@@ -48,7 +75,7 @@ function logicaProgramaçãoExercicio4() {
 }
 
 
-function logicaProgramaçãoExercicio3() {
+function logicaProgramacaoExercicio3() {
     let valor = Number(prompt("Insira um valor: "))
     let quantidadeDeNumerosPares = 0
     let i = 0
