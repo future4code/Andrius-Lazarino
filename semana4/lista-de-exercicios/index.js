@@ -52,11 +52,68 @@
 // // 3.
 // objetoExercicio3()
 
-// 4.
-objetoExercicio4()
+// // 4.
+// objetoExercicio4()
 
 
-function objetoExercicio4(){
+//Exercícios de Array ----------------------------------------------------------------------------------------------------------
+
+// // 1.
+// //a. 
+// arrayExercicio1A()
+
+// b.
+arrayExercicio1B()
+
+
+
+
+function arrayExercicio1B(){
+    let array = [
+        { nome: "Pedro", idade: 20 },
+        { nome: "João", idade: 10 },
+        { nome: "Paula", idade: 12 },
+        { nome: "Artur", idade: 89 }
+    ]
+
+    console.log(novoArray())
+
+    function novoArray() {
+        let novoArray = []
+
+        for (elemento of array) {
+            if (elemento.idade < 20) {
+                novoArray.push(elemento)
+            }
+        }
+        return novoArray
+    }
+}
+
+
+function arrayExercicio1A() {
+    let array = [
+        { nome: "Pedro", idade: 20 },
+        { nome: "João", idade: 10 },
+        { nome: "Paula", idade: 12 },
+        { nome: "Artur", idade: 89 }
+    ]
+
+    console.log(novoArray())
+
+    function novoArray() {
+        let novoArray = []
+
+        for (elemento of array) {
+            if (elemento.idade >= 20) {
+                novoArray.push(elemento)
+            }
+        }
+        return novoArray
+    }
+}
+
+function objetoExercicio4() {
     const pessoa = {
         nome: "Andrius",
         idade: 26,
@@ -64,9 +121,9 @@ function objetoExercicio4(){
         endereco: "Avenida 96"
     }
 
-    console.log("Nome: " + anonimizarPessoa().nome +" Idade: "+ pessoa.idade+" email: "+pessoa.email+" endereco: "+ pessoa.endereco)
-    
-    function anonimizarPessoa(){
+    console.log("Nome: " + anonimizarPessoa().nome + " Idade: " + pessoa.idade + " email: " + pessoa.email + " endereco: " + pessoa.endereco)
+
+    function anonimizarPessoa() {
         let pessoa2 = {
             ...pessoa,
             nome: "Anonimo"
@@ -75,75 +132,75 @@ function objetoExercicio4(){
     }
 }
 
-function objetoExercicio3(){
+function objetoExercicio3() {
     const objeto = {
         titulo: "Beasts of No Nation",
         ano: 2015,
         diretor: "Cary Fukunaga",
         ator: ["Amy Kaufman", "Riva Marker"]
     }
-    console.log("Venha asssitir ao filme "+objeto.titulo+", de "+objeto.ano+", dirigido por "+objeto.diretor+" e estrelado por "+objeto.ator[0]+", "+objeto.ator[1])
+    console.log("Venha asssitir ao filme " + objeto.titulo + ", de " + objeto.ano + ", dirigido por " + objeto.diretor + " e estrelado por " + objeto.ator[0] + ", " + objeto.ator[1])
 }
 
-function objetoExercicio2(){
+function objetoExercicio2() {
 
-    criaRetangulo(10,15)
+    criaRetangulo(10, 15)
 
-    function criaRetangulo(lado1, lado2){
-        console.log("Largura: "+lado1+" Altura: "+lado2+" perímetro: "+(2*(Number(lado1)+Number(lado2)))+" e área: "+(Number(lado1)+Number(lado2)))
+    function criaRetangulo(lado1, lado2) {
+        console.log("Largura: " + lado1 + " Altura: " + lado2 + " perímetro: " + (2 * (Number(lado1) + Number(lado2))) + " e área: " + (Number(lado1) + Number(lado2)))
     }
 }
 
 
-function funcaoExercicio1(){
-    const array = [20,2,30,40,65,78,59]
+function funcaoExercicio1() {
+    const array = [20, 2, 30, 40, 65, 78, 59]
     let primeiroMaior = 0
-   
+
     let segundoMaior = array[0]
-    
-    for (elemento of array){
-        if(elemento>primeiroMaior){
+
+    for (elemento of array) {
+        if (elemento > primeiroMaior) {
             segundoMaior = primeiroMaior
-            primeiroMaior = elemento      
+            primeiroMaior = elemento
         }
     }
     let primeiroMenor = primeiroMaior
     let segundoMenor = 0
-    for (elemento of array){
-        if(elemento<primeiroMenor){
+    for (elemento of array) {
+        if (elemento < primeiroMenor) {
             segundoMenor = primeiroMenor
             primeiroMenor = elemento
-            
+
         }
     }
-    
+
     console.log("Segundo maior: " + segundoMaior)
     console.log("Segundo menor: " + segundoMenor)
 }
 
 
-function logicaProgramacaoExercicio5(){
+function logicaProgramacaoExercicio5() {
     let numero1 = Number(prompt("Numero 1: "))
     let numero2 = Number(prompt("Numero 2: "))
 
-    if (((numero1%numero2)===0)||((numero2%numero1)===0)){
+    if (((numero1 % numero2) === 0) || ((numero2 % numero1) === 0)) {
         console.log("São divisíveis")
     }
-    else{
+    else {
         console.log("Não são divisíveis")
     }
 
-    if (numero1<numero2){
+    if (numero1 < numero2) {
         let aux
         aux = numero2
         numero2 = numero1
         numero1 = aux
-        if(numero1>0){
-            console.log("Diferença entre eles: " + (numero1-numero2))
+        if (numero1 > 0) {
+            console.log("Diferença entre eles: " + (numero1 - numero2))
         }
-        else if(numero1<0){
+        else if (numero1 < 0) {
             console.log("Nao entrou")
-            console.log("Diferença entre eles: " + (numero1-numero2))
+            console.log("Diferença entre eles: " + (numero1 - numero2))
         }
     }
 }
@@ -154,13 +211,13 @@ function logicaProgramacaoExercicio4() {
     const b = Number(prompt("Valor de b: "))
     const c = Number(prompt("Valor de c: "))
 
-    if((a===b)&&(a===c)){
+    if ((a === b) && (a === c)) {
         console.log("Esse triangulo é equilátero")
     }
-    else if((a===b)||(a===c)||(b===c)){
+    else if ((a === b) || (a === c) || (b === c)) {
         console.log("Esse triangulo é isósceles")
     }
-    else{
+    else {
         console.log("Esse triangulo é escaleno")
     }
 }
