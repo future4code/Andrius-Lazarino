@@ -17,6 +17,8 @@
 //com as propriedades selecionadas, com "filter" criamos um novo array de tamanho menor ou igual com elementos filtrados.
 //logicaProgramaçãoExercicio1()
 
+// 2. a. FALSE; b. TRUE; c. TRUE; d. FALSE; e. TRUE
+
 
 function logicaProgramaçãoExercicio1() {
     const array = [1, 5, 15, 45, 64, 78, 98, 154, 168]
