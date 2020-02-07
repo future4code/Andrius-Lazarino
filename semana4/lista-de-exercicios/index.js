@@ -72,21 +72,75 @@
 // // b.
 // arrayExercicio2B()
 
-// c.
-arrayExercicio2C()
+// // c.
+// arrayExercicio2C()
+
+// // 3.
+// // a.
+// arrayExercicio3A()
+
+// b.
+arrayExercicio3B()
 
 
-function arrayExercicio2C(){
+function arrayExercicio3B() {
+    const pessoas = [
+        { nome: "Paula", idade: 12, altura: 1.8 },
+        { nome: "João", idade: 20, altura: 1.3 },
+        { nome: "Pedro", idade: 15, altura: 1.9 },
+        { nome: "Luciano", idade: 22, altura: 1.8 },
+        { nome: "Artur", idade: 10, altura: 1.2 },
+        { nome: "Soter", idade: 70, altura: 1.9 }
+    ]
+
+    console.log(naoPermitidos())
+
+    function naoPermitidos() {
+        let permitidos = []
+        for (elemento of pessoas) {
+            if ((elemento.altura <= 1.5) || (elemento.idade <= 14) || (elemento.idade >= 60)) {
+                permitidos.push(elemento)
+            }
+        }
+        return permitidos
+    }
+}
+
+
+function arrayExercicio3A() {
+    const pessoas = [
+        { nome: "Paula", idade: 12, altura: 1.8 },
+        { nome: "João", idade: 20, altura: 1.3 },
+        { nome: "Pedro", idade: 15, altura: 1.9 },
+        { nome: "Luciano", idade: 22, altura: 1.8 },
+        { nome: "Artur", idade: 10, altura: 1.2 },
+        { nome: "Soter", idade: 70, altura: 1.9 }
+    ]
+
+    console.log(permitidos())
+
+    function permitidos() {
+        let permitidos = []
+        for (elemento of pessoas) {
+            if ((elemento.altura >= 1.5) && (elemento.idade >= 14) && (elemento.idade <= 60)) {
+                permitidos.push(elemento)
+            }
+        }
+        return permitidos
+    }
+}
+
+function arrayExercicio2C() {
     const array = [1, 2, 3, 4, 5, 6]
 
     console.log(parImpar())
 
-    function parImpar(){
+    function parImpar() {
         let arrayMult = []
-        for (elemento of array){
-            if ((elemento%2)===0){
+        for (elemento of array) {
+            if ((elemento % 2) === 0) {
                 arrayMult.push(elemento + " é par")
-            } else{
+            } else {
                 arrayMult.push(elemento + " é impar")
             }
         }
@@ -94,35 +148,35 @@ function arrayExercicio2C(){
     }
 }
 
-function arrayExercicio2B(){
+function arrayExercicio2B() {
     const array = [1, 2, 3, 4, 5, 6]
 
     console.log(multiplicado())
 
-    function multiplicado(){
+    function multiplicado() {
         let arrayMult = []
-        for (elemento of array){
+        for (elemento of array) {
             arrayMult.push(String(elemento * 3))
         }
         return arrayMult
     }
 }
 
-function arrayExercicio2A(){
+function arrayExercicio2A() {
     const array = [1, 2, 3, 4, 5, 6]
 
     console.log(multiplicado())
 
-    function multiplicado(){
+    function multiplicado() {
         let arrayMult = []
-        for (elemento of array){
+        for (elemento of array) {
             arrayMult.push(elemento * 2)
         }
         return arrayMult
     }
 }
 
-function arrayExercicio1B(){
+function arrayExercicio1B() {
     let array = [
         { nome: "Pedro", idade: 20 },
         { nome: "João", idade: 10 },
