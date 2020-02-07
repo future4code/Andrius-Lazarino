@@ -46,10 +46,21 @@
 // 1. Os arrays servem para guardar mais de um valor em apenas uma variável que são acessados por uma chave, os objetos são como variaveis mas que possuem atributos e métodos
 //e são usados para representar algo ou um elemento
 
-// 2. 
-objetoExercicio2()
+// // 2. 
+// objetoExercicio2()
 
+// 3.
+objetoExercicio3()
 
+function objetoExercicio3(){
+    const objeto = {
+        titulo: "Beasts of No Nation",
+        ano: 2015,
+        diretor: "Cary Fukunaga",
+        ator: ["Amy Kaufman", "Riva Marker"]
+    }
+    console.log("Venha asssitir ao filme "+objeto.titulo+", de "+objeto.ano+", dirigido por "+objeto.diretor+" e estrelado por "+objeto.ator[0]+", "+objeto.ator[1])
+}
 
 function objetoExercicio2(){
 
