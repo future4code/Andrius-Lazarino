@@ -35,6 +35,32 @@
 // 1.  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>()))))))((((((((***))))))))
 //funcaoExercicio1()
 
+// // 2. 
+// let funcaoExercicio2 = () =>{
+//     alert("Hello Future4")
+// }
+// funcaoExercicio2()
+
+//Exercícios de Objetos ------------------------------------------------------------------------------------------------------
+
+// 1. Os arrays servem para guardar mais de um valor em apenas uma variável que são acessados por uma chave, os objetos são como variaveis mas que possuem atributos e métodos
+//e são usados para representar algo ou um elemento
+
+// 2. 
+objetoExercicio2()
+
+
+
+function objetoExercicio2(){
+
+    criaRetangulo(10,15)
+
+    function criaRetangulo(lado1, lado2){
+        console.log("Largura: "+lado1+" Altura: "+lado2+" perímetro: "+(2*(Number(lado1)+Number(lado2)))+" e área: "+(Number(lado1)+Number(lado2)))
+    }
+}
+
+
 function funcaoExercicio1(){
     const array = [20,2,30,40,65,78,59]
     let primeiroMaior = 0
