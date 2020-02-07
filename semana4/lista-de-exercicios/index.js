@@ -49,8 +49,31 @@
 // // 2. 
 // objetoExercicio2()
 
-// 3.
-objetoExercicio3()
+// // 3.
+// objetoExercicio3()
+
+// 4.
+objetoExercicio4()
+
+
+function objetoExercicio4(){
+    const pessoa = {
+        nome: "Andrius",
+        idade: 26,
+        email: "andrius@andrius.com",
+        endereco: "Avenida 96"
+    }
+
+    console.log("Nome: " + anonimizarPessoa().nome +" Idade: "+ pessoa.idade+" email: "+pessoa.email+" endereco: "+ pessoa.endereco)
+    
+    function anonimizarPessoa(){
+        let pessoa2 = {
+            ...pessoa,
+            nome: "Anonimo"
+        }
+        return pessoa2
+    }
+}
 
 function objetoExercicio3(){
     const objeto = {
