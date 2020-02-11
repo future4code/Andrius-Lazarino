@@ -1,0 +1,13 @@
+#SmallCard{
+    display: flex;
+    border: solid 1px black;
+}
+#SmallCard>div{
+    margin-left: 3%;
+}
+.iconeSmall{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 3%;
+    width: 30px;
+}
