@@ -1,0 +1,25 @@
+#SmallCard{
+    display: flex;
+    border: solid 1px #544F50;
+    background-color: #B3B0B1;
+}
+#SmallCard>div{
+    margin-left: 3%;
+}
+
+@media screen and (max-width:480px){
+    #SmallCard>div{
+        margin-left: 0;
+    } 
+    #SmallCard>div>p{
+        width: 300px;
+        padding-left: 3%;
+        text-align: left;
+    }
+}
+.iconeSmall{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 3%;
+    width: 30px;
+}

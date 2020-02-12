@@ -1,0 +1,15 @@
+.PageSection {
+    margin-bottom: 3%;
+    width: 30%;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 3%;
+}
+@media screen and (max-width: 480px){
+    .PageSection {
+        width: 95%;
+        margin-bottom: 15%;
+        /* background-color: blueviolet; */
+    }
+}

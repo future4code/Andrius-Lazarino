@@ -1,0 +1,21 @@
+[0211/121653.528:ERROR:persistent_memory_allocator.cc(678)] Corruption detected in shared-memory segment.
+[0211/121653.529:ERROR:persistent_memory_allocator.cc(678)] Corruption detected in shared-memory segment.
+[0211/121653.529:ERROR:persistent_memory_allocator.cc(678)] Corruption detected in shared-memory segment.
+[0211/121653.529:ERROR:persistent_memory_allocator.cc(678)] Corruption detected in shared-memory segment.
+[0211/121653.530:ERROR:file_io_win.cc(163)] CreateFile C:\Program Files (x86)\temp\settings.dat: Acesso negado. (0x5)
+[0211/121653.654:ERROR:registration_protocol_win.cc(84)] TransactNamedPipe: O pipe foi finalizado. (0x6D)
+[0211/121653.655:ERROR:file_io_win.cc(163)] CreateFile C:\Program Files (x86)\temp\settings.dat: Acesso negado. (0x5)
+[0211/161634.965:ERROR:persistent_memory_allocator.cc(678)] Corruption detected in shared-memory segment.
+[0211/161634.981:ERROR:persistent_memory_allocator.cc(678)] Corruption detected in shared-memory segment.
+[0211/161634.981:ERROR:persistent_memory_allocator.cc(678)] Corruption detected in shared-memory segment.
+[0211/161634.981:ERROR:persistent_memory_allocator.cc(678)] Corruption detected in shared-memory segment.
+[0211/161634.982:ERROR:file_io_win.cc(163)] CreateFile C:\Program Files (x86)\temp\settings.dat: Acesso negado. (0x5)
+[0211/161634.995:ERROR:registration_protocol_win.cc(84)] TransactNamedPipe: O pipe foi finalizado. (0x6D)
+[0211/161634.996:ERROR:file_io_win.cc(163)] CreateFile C:\Program Files (x86)\temp\settings.dat: Acesso negado. (0x5)
+[0211/171502.411:ERROR:persistent_memory_allocator.cc(678)] Corruption detected in shared-memory segment.
+[0211/171502.411:ERROR:persistent_memory_allocator.cc(678)] Corruption detected in shared-memory segment.
+[0211/171502.411:ERROR:persistent_memory_allocator.cc(678)] Corruption detected in shared-memory segment.
+[0211/171502.411:ERROR:persistent_memory_allocator.cc(678)] Corruption detected in shared-memory segment.
+[0211/171502.411:ERROR:file_io_win.cc(163)] CreateFile C:\Program Files (x86)\temp\settings.dat: Acesso negado. (0x5)
+[0211/171502.411:ERROR:registration_protocol_win.cc(84)] TransactNamedPipe: O pipe foi finalizado. (0x6D)
+[0211/171502.411:ERROR:file_io_win.cc(163)] CreateFile C:\Program Files (x86)\temp\settings.dat: Acesso negado. (0x5)

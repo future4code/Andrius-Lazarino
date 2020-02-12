@@ -1,0 +1,18 @@
+#BigCard{
+    display: flex;
+    border: solid 1px #544F50;
+    border-radius: 25px;
+    background-color: #B3B0B1;
+}
+#BigCard>div p{
+    margin-left: 3%;
+    text-align: left;
+}
+.fotoPerfil{
+    margin-left: 3%;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-top: auto;
+    margin-bottom: auto;
+}

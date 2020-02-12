@@ -1,0 +1,31 @@
+.ImageButton {
+    border: solid 1px #544F50;
+    border-radius: 50px;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10%;
+    background-color: #B3B0B1;
+}
+.ImageButton>a {
+    display: flex;
+    color: black;
+    font-size: larger;
+}
+.ImageButton>a:link, .ImageButton>a:visited, .ImageButton>a:hover, .ImageButton>a:active
+{
+text-decoration:none;
+}
+.ImageButton>a>p{
+    width: 100px;
+}
+.ImagemButton {
+    width: 35px;
+    height: 35px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 3%;
+    margin-right: 3%;
+}
