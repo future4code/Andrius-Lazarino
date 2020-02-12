@@ -1,10 +1,8 @@
-/* #BigCard>img{
-    height: 5%;
-    background-color: #00ffff;
-} */
 #BigCard{
     display: flex;
-    border: solid 1px black;
+    border: solid 1px #544F50;
+    border-radius: 25px;
+    background-color: #B3B0B1;
 }
 #BigCard>div p{
     margin-left: 3%;

@@ -1,5 +1,5 @@
 .ImageButton {
-    border: solid 1px black;
+    border: solid 1px #544F50;
     border-radius: 50px;
     width: 50%;
     height: 100%;
@@ -7,6 +7,7 @@
     margin-left: auto;
     margin-right: auto;
     padding-left: 10%;
+    background-color: #B3B0B1;
 }
 .ImageButton>a {
     display: flex;
