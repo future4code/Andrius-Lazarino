@@ -22,6 +22,12 @@
     margin-bottom: 3%;
 }
 
+@media screen and (max-width: 480px){
+    .Post{
+        width: 90%;
+    }
+}
+
 .Post>div{
     display: flex;
 }
@@ -35,8 +41,8 @@
 }
 
 .Post>img{
-    width: 600px;
-    height: 450px;
+    width: 100%;
+    height: 30%;
 }
 
 .PostFooter{

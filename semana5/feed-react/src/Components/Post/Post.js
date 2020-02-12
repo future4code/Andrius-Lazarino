@@ -9,7 +9,8 @@ class Post extends React.Component {
         this.state = {
             curtidas: 0,
             comentarios: 0,
-            curtidaEstado: require("../../img/favorite-white.svg")
+            curtidaEstado: require("../../img/favorite-white.svg"),
+            cliques: 0
         }
     }
     curtir = () => {
@@ -44,11 +45,18 @@ class Post extends React.Component {
         this.comentarioInserirInput()
     }
 
+    pressioneEnter = (e) => {
+        console.log(e.key)
+        if (e.key==='Enter'){
+            this.removerInput()
+        }
+    }
+
     comentarioInserirInput = () => {
         if (this.state.comentarios === 1) {
             return (
                 <div>
-                    <input placeholder="Escreva seu comentário" />
+                    <input placeholder="Escreva seu comentário" onKeyPress={this.pressioneEnter} />
                     <button onClick={this.removerInput}>Comentar</button>
                 </div>
             )
@@ -59,6 +67,22 @@ class Post extends React.Component {
         }
     }
 
+    clicou = () => {
+        this.setState({
+            cliques: this.state.cliques + 1
+        })
+        console.log(this.state.cliques)
+        if (this.state.cliques===1){
+            this.curtir()
+            console.log("Teste")
+        }
+        else if(this.state.cliques===3){
+            this.setState({
+                cliques: 0
+            })
+            this.curtir()
+        }
+    }
 
     render() {
         return (
@@ -67,7 +91,7 @@ class Post extends React.Component {
                     <img src={this.props.imagemUsuario} alt="Imagem não encontrada" />
                     <p><b>{this.props.nome}</b></p>
                 </div>
-                <img src={this.props.imagem} />
+                <img src={this.props.imagem} onClick={this.clicou} />
                 <div className="PostFooter">
                     <div>
                         <img src={this.state.curtidaEstado} onClick={this.curtir} />
