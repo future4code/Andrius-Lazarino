@@ -1,0 +1,52 @@
+.titulo{
+    display: flex;
+    height: 10%;
+}
+
+.titulo>img{
+    margin-left: 3%;
+    width: 50px;
+    border-radius: 50%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.titulo>p{
+    margin-left: 3%;
+}
+
+.Post{
+    border: solid 1px black;
+    width: 600px;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.Post>div{
+    display: flex;
+}
+
+.Post>div>input{
+    width: 80%;
+}
+
+.Post>div>button{
+    width: 20%;
+}
+
+.Post>img{
+    width: 600px;
+    height: 450px;
+}
+
+.PostFooter{
+    height: 50px;
+    justify-content: space-between;
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
+.PostFooter>div {
+    margin-top: auto;
+    margin-bottom: auto;
+}
