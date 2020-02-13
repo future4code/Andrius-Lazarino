@@ -5,11 +5,10 @@ import styled from 'styled-components';
 import { render } from '@testing-library/react';
 
 const Formulario = styled.div`
-  border: solid 1px black;
+  
 `
 
 const Posts = styled.div`
-  border: solid 1px black;
   margin-top: 5%;
 `
 
@@ -90,9 +89,9 @@ class App extends React.Component {
           <hr />
 
           <Formulario>
-            <input type="text" onChange={this.aoMudarOInputNome} value={this.state.nome} />
-            <input type="text" onChange={this.aoMudarOInputFotoPerfil} value={this.state.fotoPerfil} />
-            <input type="text" onChange={this.aoMudarOInputFotoPost} value={this.state.fotoPost} />
+            <input type="text" placeholder="Seu nome" onChange={this.aoMudarOInputNome} value={this.state.nome} />
+            <input type="text" placeholder="Foto perfil" onChange={this.aoMudarOInputFotoPerfil} value={this.state.fotoPerfil} />
+            <input type="text" placeholder="Foto post" onChange={this.aoMudarOInputFotoPost} value={this.state.fotoPost} />
             <button onClick={this.Postar}>Criar Post</button>
           </Formulario>
 
