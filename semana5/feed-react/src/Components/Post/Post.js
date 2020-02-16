@@ -1,6 +1,58 @@
 import React from 'react';
 import './Post.css';
 import { findRenderedComponentWithType } from 'react-dom/test-utils';
+import styled from 'styled-components';
+
+const PostMain = styled.div`
+    border: solid 1px #B3B9A0;
+    width: 600px;
+    margin-top: 0;
+    margin-bottom: 3%;
+`
+const ImagemPost = styled.img`
+    width: 100%;
+    height: 30%;
+`
+const PostFooter = styled.div`
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 5%;
+    padding-left: 5%;
+
+`
+const ComentarioECurtida = styled.div`
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 7%;
+
+`
+const FotoPerfil = styled.img`
+    margin-left: 3%;
+    width: 50px;
+    border-radius: 50%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+`
+const QuantidadeLikeComentario = styled.label`
+
+`
+
+const Icone = styled.img`
+
+
+`
+
+const Titulo = styled.div`
+    display: flex;
+    height: 10%;
+`
+const TituloParagrafo = styled.p`
+    margin-left: 3%;
+`
+
+
+
 
 class Post extends React.Component {
     constructor(props) {
@@ -26,6 +78,7 @@ class Post extends React.Component {
             })
         }
     }
+
 
     comentar = () => {
         if (this.state.comentarios === 0) {
@@ -86,24 +139,24 @@ class Post extends React.Component {
 
     render() {
         return (
-            <div className="Post">
-                <div className="titulo">
-                    <img src={this.props.imagemUsuario} alt="Imagem não encontrada" />
-                    <p><b>{this.props.nome}</b></p>
-                </div>
-                <img src={this.props.imagem} onClick={this.clicou} />
-                <div className="PostFooter">
-                    <div>
-                        <img src={this.state.curtidaEstado} onClick={this.curtir} />
-                        <label>{this.state.curtidas}</label>
-                    </div>
-                    <div>
-                        <img src={require("../../img/comment_icon.svg")} onClick={this.comentar} />
-                        <label>{this.state.comentarios}</label>
-                    </div>
-                </div>
+            <PostMain>
+                <Titulo>
+                    <FotoPerfil src={this.props.imagemUsuario} alt="Imagem não encontrada" />
+                    <TituloParagrafo><b>{this.props.nome}</b></TituloParagrafo>
+                </Titulo>
+                <ImagemPost src={this.props.imagem} onClick={this.clicou} />
+                <PostFooter>
+                    <ComentarioECurtida>
+                        <Icone src={this.state.curtidaEstado} onClick={this.curtir} />
+                        <QuantidadeLikeComentario>{this.state.curtidas}</QuantidadeLikeComentario>
+                    </ComentarioECurtida>
+                    <ComentarioECurtida>
+                        <Icone src={require("../../img/comment_icon.svg")} onClick={this.comentar} />
+                        <QuantidadeLikeComentario>{this.state.comentarios}</QuantidadeLikeComentario>
+                    </ComentarioECurtida>
+                </PostFooter>
                 {this.comentarioInserirInput()}
-            </div>
+            </PostMain>
         )
     }
 }
