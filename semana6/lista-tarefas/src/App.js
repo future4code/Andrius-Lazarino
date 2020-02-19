@@ -42,33 +42,83 @@ class App extends Component {
       inputNome: "",
       selectFiltro: "Nenhum",
 
-      listaDeTarefas: []
+      listaDeTarefas: [],
+      listaDeTarefasComponente: [],
+      listaFiltrada: []
     }
   }
 
-  inputNomeControlado = (event)=>{
+  inputNomeControlado = (event) => {
     this.setState({
       inputNome: event.target.value
     })
   }
-  selectFiltroControlado = (event)=>{
+  selectFiltroControlado = (event) => {
     this.setState({
       selectFiltro: event.target.value
     })
+    this.filtrarTarefa(event.target.value)
   }
-  adicionarTarefa=()=>{
+  adicionarTarefa = () => {
     const listaAuxiliarDados = {
-      nomeTarefa: this.state.inputNome
+      nomeTarefa: this.state.inputNome,
+      pendencia: false
     }
 
     const copiaListaDeTarefas = this.state.listaDeTarefas
     copiaListaDeTarefas.push(listaAuxiliarDados)
-
-    const listaDeTarefas = copiaListaDeTarefas.map((elemento, index) => {
-      return (<Tarefa key={index} nomeTarefa={elemento.nomeTarefa} />)
+    console.log(copiaListaDeTarefas[0].pendencia)
+    const listaDeTarefas = copiaListaDeTarefas.map((elemento, index, array) => {
+      return (<Tarefa key={index} pendenciaState={elemento.pendencia} pendencia={(pendencia) => {
+        this.atualizaPendencia(index, pendencia)
+      }} nomeTarefa={elemento.nomeTarefa} />)
     })
     this.setState({
       listaDeTarefas: copiaListaDeTarefas,
+      listaDeTarefasComponente: listaDeTarefas
+    })
+  }
+
+  atualizaPendencia = (index, pendencia) => {
+    const copiaListaDeTarefas = this.state.listaDeTarefas
+    copiaListaDeTarefas[index].pendencia = pendencia
+    this.setState({
+      listaDeTarefas: copiaListaDeTarefas
+    })
+    //this.filtrarTarefa(this.state.selectFiltro)
+  }
+
+  filtrarTarefa = (pendencia) => {
+    console.log(this.state.listaDeTarefas)
+    console.log(pendencia)
+    let listaFiltrada
+    if (pendencia === "Nenhum") {
+      listaFiltrada = this.state.listaDeTarefas
+    }
+    else if (pendencia === "Completas") {
+      listaFiltrada = this.state.listaDeTarefas.filter((elemento, index, array) => {
+        if (elemento.pendencia === true) {
+          return true
+        }
+        return false
+      })
+    }
+    else {
+      listaFiltrada = this.state.listaDeTarefas.filter((elemento, index, array) => {
+        if (elemento.pendencia === false) {
+          return true
+        }
+        return false
+      })
+    }
+   
+    //////////////////////////////
+    const listaDeTarefas = listaFiltrada.map((elemento, index) => {
+      return (<Tarefa key={index} pendenciaState={elemento.pendencia} pendencia={(pendencia) => {
+        this.atualizaPendencia(index, pendencia)
+      }} nomeTarefa={elemento.nomeTarefa} />)
+    })
+    this.setState({
       listaDeTarefasComponente: listaDeTarefas
     })
   }
@@ -78,17 +128,17 @@ class App extends Component {
       <Aplicativo>
         <Topo>
           <div>
-          <h2>Lista de Tarefas</h2>
-          <Input value={this.state.inputNome} onChange={this.inputNomeControlado} />
-          <Botao onClick={this.adicionarTarefa}>Adicionar</Botao>
+            <h2>Lista de Tarefas</h2>
+            <Input value={this.state.inputNome} onChange={this.inputNomeControlado} />
+            <Botao onClick={this.adicionarTarefa}>Adicionar</Botao>
           </div>
           <div>
-          <P>Filtro</P>
-          <Select value={this.state.selectFiltro} onChange={this.selectFiltroControlado} >
-            <option>Nenhum</option>
-            <option>Pendentes</option>
-            <option>Completas</option>
-          </Select>
+            <P>Filtro</P>
+            <Select value={this.state.selectFiltro} onChange={this.selectFiltroControlado} >
+              <option>Nenhum</option>
+              <option >Pendentes</option>
+              <option >Completas</option>
+            </Select>
           </div>
         </Topo>
         <Hr />
