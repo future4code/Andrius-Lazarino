@@ -42,7 +42,7 @@ class App extends Component {
       inputNome: "",
       selectFiltro: "Nenhum",
 
-      listaDeTarefas: [],
+      listaDeTarefas: [{nomeTarefa: "a", pendencia: false},{nomeTarefa: "b", pendencia: false},{nomeTarefa: "c", pendencia: true}],
       listaDeTarefasComponente: [],
       listaFiltrada: []
     }
@@ -67,7 +67,6 @@ class App extends Component {
 
     const copiaListaDeTarefas = this.state.listaDeTarefas
     copiaListaDeTarefas.push(listaAuxiliarDados)
-    console.log(copiaListaDeTarefas[0].pendencia)
     const listaDeTarefas = copiaListaDeTarefas.map((elemento, index, array) => {
       return (<Tarefa key={index} pendenciaState={elemento.pendencia} pendencia={(pendencia) => {
         this.atualizaPendencia(index, pendencia)
@@ -85,12 +84,10 @@ class App extends Component {
     this.setState({
       listaDeTarefas: copiaListaDeTarefas
     })
-    //this.filtrarTarefa(this.state.selectFiltro)
+    this.filtrarTarefa(this.state.selectFiltro)
   }
 
   filtrarTarefa = (pendencia) => {
-    console.log(this.state.listaDeTarefas)
-    console.log(pendencia)
     let listaFiltrada
     if (pendencia === "Nenhum") {
       listaFiltrada = this.state.listaDeTarefas
@@ -111,13 +108,13 @@ class App extends Component {
         return false
       })
     }
-   
-    //////////////////////////////
+    console.log(listaFiltrada)
     const listaDeTarefas = listaFiltrada.map((elemento, index) => {
       return (<Tarefa key={index} pendenciaState={elemento.pendencia} pendencia={(pendencia) => {
         this.atualizaPendencia(index, pendencia)
       }} nomeTarefa={elemento.nomeTarefa} />)
     })
+
     this.setState({
       listaDeTarefasComponente: listaDeTarefas
     })

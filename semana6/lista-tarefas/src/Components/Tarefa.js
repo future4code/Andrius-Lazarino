@@ -8,10 +8,11 @@ text-decoration: ${props=>props.riscar};
 class Tarefa extends React.Component {
     constructor(props) {
         super(props)
+        
         this.state = {
             estaPendente: this.props.pendenciaState,
-            EstaPendenteDecoration: "none"
-        }
+            EstaPendenteDecoration: this.props.pendenciaState ? 'line-through':'none'
+        }    
     }
 
     riscaTarefa = (props)=>{
@@ -26,10 +27,10 @@ class Tarefa extends React.Component {
             estaPendente: !this.state.estaPendente,
             EstaPendenteDecoration: decoracao
         })
+
     }
     
     render(){
-        console.log(this.state.estaPendente)
         // let decoracao
         // if(this.state.estaPendente){
         //     decoracao="none"
@@ -40,7 +41,7 @@ class Tarefa extends React.Component {
         // this.setState({
         //     EstaPendenteDecoration: decoracao
         // })
-
+        //ISSO DA LOOP INIFINITO POR CAUSA DO SETSTATE
         return(
         <Main onClick={()=>{
             this.riscaTarefa()
