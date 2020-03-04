@@ -14,6 +14,14 @@ const Input = styled.input`
 display:block;
 `
 
+const Deletar = styled.span`
+background-color: red;
+`
+const Lista = styled.li`
+display:flex;
+width:100%;
+justify-content: space-around;
+`
 
 
 const baseUrl = "https://us-central1-future4-users.cloudfunctions.net/api"
@@ -24,44 +32,63 @@ class ListaUsuario extends React.Component {
         super(props)
         this.state = {
             inputNome: "",
-            inputEmail: ""
+            inputEmail: "",
+            usuarioLista: []
         }
     }
 
-
-    inputNomeControlado = (e) => {
-        this.setState({
-            inputNome: e.target.value
-        })
-    }
-    inputEmailControlado = (e) => {
-        this.setState({
-            inputEmail: e.target.value
-        })
+    componentDidMount() {
+        this.listarUsuarios()
     }
 
-    cadastrarUsuario = () => {
+    deletarUsuario = (idUsuario) => {
+        if (window.confirm("Tem certeza que deseja deletar?")) {
+            const apagarUsuarioPromisse = axios.delete(`${baseUrl}/users/deleteUser?id=${idUsuario}`, { headers: { 'api-token': authToken } })
+            apagarUsuarioPromisse.then((response) => {
+                this.listarUsuarios()
+                alert("Deletado com sucesso!")
+                if (this.state.usuarioLista.length === 1) {
+                    this.setState({ usuarioLista: [] })
+                }
+            })
+                .catch((error) => {
+                    alert("Erro ao apagar")
+                })
+        }
+
+    }
+
+
+    listarUsuarios = () => {
         const dadosDoUsuario = {
             name: this.state.inputNome,
             email: this.state.inputEmail
         }
-        console.log(dadosDoUsuario)
 
-        const cadastrarUsuarioPromisse = axios.post(
-            `${baseUrl}/users/createUser`,
-            dadosDoUsuario,
+        const listaUsuariosPromisse = axios.get(
+            `${baseUrl}/users/getAllUsers`,
             {
                 headers: {
                     'api-token': authToken
                 }
             }
         )
-        cadastrarUsuarioPromisse.then(response => {
-            alert("Usuario criado com sucesso")
+        listaUsuariosPromisse.then(response => {
+            let usuarioLista = response.data.result
+            usuarioLista = usuarioLista.map((elemento, index) => {
+                return (<Lista onClick={()=>{this.props.mudaTelaDetalhe(elemento.id)}} key={elemento.id}>{elemento.name}<Deletar onClick={() => { this.deletarUsuario(elemento.id) }}>Deletar</Deletar></Lista>)
+            })
+
+            this.setState({
+                usuarioLista: usuarioLista
+            })
         }).catch(error => {
             console.log(error)
-            alert("Erro ao criar usuário")
         })
+    }
+
+    todosUsuarios = () => {
+
     }
 
     render() {
@@ -69,7 +96,8 @@ class ListaUsuario extends React.Component {
 
         return (
             <Main>
-                
+                {this.state.usuarioLista.length===0 && <span>Carregando...</span>}
+                {this.state.usuarioLista}
             </Main>
         );
     }
