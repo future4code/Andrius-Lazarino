@@ -76,7 +76,7 @@ class ListaUsuario extends React.Component {
         listaUsuariosPromisse.then(response => {
             let usuarioLista = response.data.result
             usuarioLista = usuarioLista.map((elemento, index) => {
-                return (<Lista onClick={()=>{this.props.mudaTelaDetalhe(elemento.id)}} key={elemento.id}>{elemento.name}<Deletar onClick={() => { this.deletarUsuario(elemento.id) }}>Deletar</Deletar></Lista>)
+                return (<Lista key={elemento.id}><span onClick={()=>{this.props.mudaTelaDetalhe(elemento.id)}}>{elemento.name}</span><Deletar onClick={() => { this.deletarUsuario(elemento.id) }}>Deletar</Deletar></Lista>)
             })
 
             this.setState({
