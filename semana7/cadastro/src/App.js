@@ -22,7 +22,6 @@ class App extends React.Component {
   }
 
   telaAtual = () => {
-    let tela
     if (this.state.tela === 'cadastro') {
       return <Cadastro />
     }
@@ -30,17 +29,19 @@ class App extends React.Component {
       return (<ListaUsuario mudaTelaDetalhe={this.mudaTelaDetalhe} />)
     }
     else {
-      return (<DetalheUsuario idUsuario = {this.state.idUsuarioDetalhe} />)
+      return (<DetalheUsuario idUsuario={this.state.idUsuarioDetalhe} mudaTela={this.mudaTela} />)
     }
   }
 
   mudaTela = () => {
-    let tela
     if (this.state.tela === 'cadastro') {
       this.setState({ tela: 'lista' })
     }
     else if (this.state.tela === 'lista') {
       this.setState({ tela: 'cadastro' })
+    }
+    else {
+      this.setState({ tela: 'lista' })
     }
   }
 
@@ -50,13 +51,36 @@ class App extends React.Component {
       idUsuarioDetalhe: idUsuario
     })
   }
+
+  // voltaDepoisDeDeletar = ()=.{
+  //   this.setState({
+  //     tela:'lista'
+  //   })
+  // }
+
+
+  mudaNomeTela = () => {
+    switch (this.state.tela) {
+      case 'cadastro':
+        return (<Fragment>Ir para página de lista</Fragment>)
+        
+      case 'lista':
+        return (<Fragment>Ir para página de registro</Fragment>)
+       
+      default:
+        return (<Fragment>Voltar</Fragment>)
+        
+    }
+  }
   render() {
 
 
     return (
       <Aplicativo>
-        <button onClick={this.mudaTela} >{this.state.tela === 'cadastro' ? <Fragment>Ir para página de lista</Fragment> : <Fragment>Ir para página de registro</Fragment>}</button>
-      
+        <button onClick={this.mudaTela} >{
+          this.mudaNomeTela()
+        }</button>
+
         {this.telaAtual()}
 
       </Aplicativo>

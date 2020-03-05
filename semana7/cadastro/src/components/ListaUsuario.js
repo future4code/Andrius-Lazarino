@@ -10,9 +10,6 @@ const Main = styled.div`
     flex-direction:column;
     align-items:center;
 `
-const Input = styled.input`
-display:block;
-`
 
 const Deletar = styled.span`
 background-color: red;
@@ -60,10 +57,6 @@ class ListaUsuario extends React.Component {
 
 
     listarUsuarios = () => {
-        const dadosDoUsuario = {
-            name: this.state.inputNome,
-            email: this.state.inputEmail
-        }
 
         const listaUsuariosPromisse = axios.get(
             `${baseUrl}/users/getAllUsers`,
