@@ -108,8 +108,8 @@ class DetalheUsuario extends React.Component {
 
     telaEditarUsuario = () => {
         return (<div>
-            <input type="text" onChange={this.inputNomeControlado} value={this.state.nomeInput} />
-            <input type="text" onChange={this.inputEmailControlado} value={this.state.emailInput} />
+            <input type="text" onChange={this.inputNomeControlado} value={this.state.nomeInput} placeholder="Insira um novo nome" />
+            <input type="text" onChange={this.inputEmailControlado} value={this.state.emailInput} placeholder="Insira um novo email" />
             <button onClick={() => {
                 this.editarUsuario()
             }}>Salvar</button>
