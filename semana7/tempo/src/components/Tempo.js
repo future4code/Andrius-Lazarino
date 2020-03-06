@@ -1,8 +1,25 @@
 import React from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
+
+const Main = styled.div`
+    margin-top:10%;
+    text-align:center;
+`
+const Dia = styled.div`
+    display:flex;
+`
+const Item = styled.span`
+    margin-left:5px;
+    margin-right:5px;
+`
+const Cidade = styled.div`
+    margin-top:3%;
+    border: 1px solid black;
+`
 
 const baseUrl = 'https://www.metaweather.com'
-//const authToken = 'd4b296d5e9886ab0651c5895c5d4335b'
+
 
 class Tempo extends React.Component {
     constructor(props) {
@@ -10,6 +27,7 @@ class Tempo extends React.Component {
         this.state = {
             tempoAgora: false,
             diaTempo: false,
+            listaDia:[],
             inputPesquisa: ''
         }
     }
@@ -35,9 +53,22 @@ class Tempo extends React.Component {
                 `${baseUrl}/api/location/${idCidade}`
             )
             detalheCidadePromisse.then(response => {
+                const diaTempo = response.data.consolidated_weather
+                const listaDia = diaTempo.map((elemento, index) => {
+                    return (
+                        <Dia>
+                            <Item>Dia {elemento.applicable_date}</Item>
+                            <Item>Tempo agora: {this.traduzTempo(elemento.weather_state_name)}</Item>
+                            <Item>Previsão: {elemento.predictability}%</Item>
+                            <Item>Umidade: {elemento.humidity}%</Item>
+                        </Dia>
+                    )
+                })
+                ////////
                 this.setState({
                     tempoAgora: response.data,
-                    diaTempo: response.data.consolidated_weather[0]
+                    diaTempo: diaTempo,
+                    listaDia:listaDia
                 })
                 console.log(response.data.consolidated_weather[0])
             })
@@ -74,26 +105,39 @@ class Tempo extends React.Component {
                 return 'Nuvem clara'
             case 'Clear':
                 return 'Claro'
+            default:
+                return 'Erro'
         }
     }
 
-    mostrarCidade = ()=>{
-        return (<div>
+    listaDiasPrevisao = () => {
+        const listaDia = this.state.diaTempo.map((elemento, index) => {
+            return (
+                <Dia>
+                    <Item>Dia {this.state.diaTempo[0].applicable_date}</Item>
+                    <Item>Tempo agora: {this.traduzTempo(this.state.diaTempo[0].weather_state_name)}</Item>
+                    <Item>Previsão: {this.state.diaTempo[0].predictability}%</Item>
+                    <Item>Umidade: {this.state.diaTempo[0].humidity}%</Item>
+                </Dia>
+            )
+        })
+        this.setState({listaDia:listaDia})
+    }
+
+    mostrarCidade = () => {
+        return (<Cidade>
             Cidade: {this.state.tempoAgora.title}
             <hr />
-            Horário: {this.state.tempoAgora.time}
+            Horário: {this.state.tempoAgora.time.substr(11, 5)}
             <hr />
             latitude e longitude: {this.state.tempoAgora.latt_long}
             <hr />
+            Previsão de 5 dias
             <div>
-
-                hoje {this.state.diaTempo.applicable_date}
-                <span>Tempo agora: {this.traduzTempo(this.state.diaTempo.weather_state_name)}</span>
-                <span>umidade: {this.state.diaTempo.humidity}%</span>
-                <span>Previsão: {this.state.diaTempo.predictability}%</span>
+                {this.state.listaDia}
             </div>
 
-        </div>)
+        </Cidade>)
     }
     render() {
 
@@ -101,15 +145,13 @@ class Tempo extends React.Component {
 
 
         return (
-            <div>
-                {/* {this.state.tempoAgora} */}
-                {/* {this.state.tempoAgora?<div>{this.state.tempoAgora}</div> : <div>Carregando...</div>} */}
-
-                <input value={this.state.inputPesquisa} onChange={this.inputPesquisaControlado} />
+            <Main>
+                
+                <input placeholder="Insira uma cidade" value={this.state.inputPesquisa} onChange={this.inputPesquisaControlado} />
                 <button onClick={this.pesquisarClima}>Pesquisar e mostrar clima</button>
 
                 {this.state.diaTempo && this.mostrarCidade()}
-            </div>
+            </Main>
         );
 
     }
