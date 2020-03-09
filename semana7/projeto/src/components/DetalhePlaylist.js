@@ -7,12 +7,19 @@ const Main = styled.div`
 display:flex;
 flex-direction:column;
 align-items: center;
-` 
+`
 const Musicas = styled.div`
-    width:96%;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 `
 const Musica = styled.p`
-    border: 1px dotted black;
+    width:86%;
+    padding-left:6%;
+    padding-right:6%;
+    border: 1px solid #878788;
+    box-shadow: 0px 4px 5px 0px rgba(50, 50, 50, 0.86);
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -23,7 +30,11 @@ const Musica = styled.p`
 `
 const Deletar = styled.button`
     background-color:red;
-    
+`
+const Botao = styled.button`
+  height: 40px;
+  margin-top:19px;
+  margin-bottom:16px;
 `
 
 
@@ -41,7 +52,7 @@ class DetalhePlaylist extends React.Component {
         this.detalheMusica()
     }
 
-    deletarMusica = (idMusica) =>{
+    deletarMusica = (idMusica) => {
         const deletarMusicaPromisse = axios.delete(
             `${this.props.baseUrl}/playlists/removeMusicFromPlaylist?playlistId=${this.props.idPlaylist}&musicId=${idMusica}`,
             {
@@ -50,13 +61,13 @@ class DetalhePlaylist extends React.Component {
                 }
             }
         )
-        deletarMusicaPromisse.then(response=>{
+        deletarMusicaPromisse.then(response => {
             alert("Musica deletada da playlist")
             this.detalheMusica()
         })
-        .catch(error=>{
-            console.log(error)
-        })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
     detalheMusica = () => {
@@ -70,7 +81,7 @@ class DetalhePlaylist extends React.Component {
         )
         detalheMusica.then(response => {
             const detalhePlaylist = response.data.result.musics.map((musica, index) => {
-                return (<Musica key={musica.id}>{musica.name} {musica.artist} <p><audio src={musica.url} controls>Seu navegador não suporta o audio</audio> <Deletar onClick={()=>{this.deletarMusica(musica.id)}}>DELETAR</Deletar></p></Musica>)
+                return (<Musica key={musica.id}> <div> <p> {musica.name} </p> <p> {musica.artist} </p> </div> <p><audio src={musica.url} controls>Seu navegador não suporta o audio</audio> <Deletar onClick={() => { this.deletarMusica(musica.id) }}>DELETAR</Deletar></p></Musica>)
             })
             this.setState({ detalhePlaylist: detalhePlaylist })
         })
@@ -80,7 +91,7 @@ class DetalhePlaylist extends React.Component {
     }
 
     adicionaMusicaPlaylist = () => {
-        
+
         const adicionaMusicaPlaylistPromisse = axios.put(
             `${this.props.baseUrl}/playlists/addMusicToPlaylist`,
             {
@@ -125,7 +136,7 @@ class DetalhePlaylist extends React.Component {
 
         return (
             <Main>
-                <h2>Musicas</h2>
+                <h2>Musicas da playlist </h2>
                 <Musicas>
                     {this.state.detalhePlaylist !== undefined ? this.state.detalhePlaylist : <Fragment>Carregando...</Fragment>}
                 </Musicas>
@@ -137,7 +148,7 @@ class DetalhePlaylist extends React.Component {
                 <input type="text" value={this.state.inputArtistas} onChange={this.inputArtistasControlado} />
                 <p>Url da musica:</p>
                 <input type="text" value={this.state.inputUrlMusica} onChange={this.inputUrlMusicaControlado} />
-                <button onClick={this.adicionaMusicaPlaylist}>Adicionar musica</button>
+                <Botao onClick={this.adicionaMusicaPlaylist}>Adicionar musica</Botao>
             </Main>
         )
     }

@@ -15,6 +15,11 @@ const Titulo = styled.h2`
 const Input = styled.input`
     width:50%;
 `
+const Botao = styled.button`
+  height: 40px;
+  margin-top: 16px;
+  margin-bottom:16px;
+`
 
 class CriarPlaylist extends React.Component {
     constructor(props) {
@@ -44,7 +49,7 @@ class CriarPlaylist extends React.Component {
             .catch(error => {
                 console.log(error)
                 if (error.response.data.message === 'There already is a playlist with a similiar name.') {
-                    alert("Não foi possivel criar uma nova playlist, nome de playlist já existe!")
+                    alert("Não foi possivel criar uma nova playlist, esse nome já existe!")
                 }
             })
 
@@ -68,7 +73,7 @@ class CriarPlaylist extends React.Component {
             <Main>
                 <Titulo>Criação de playlist</Titulo>
                 <Input type="text" value={this.state.inputNomePlaylist} onChange={this.inputNomePlaylistControlado} />
-                <button onClick={this.criarPlaylist}>Criar Playlist</button>
+                <Botao onClick={this.criarPlaylist}>Criar Playlist</Botao>
             </Main>
         )
     }

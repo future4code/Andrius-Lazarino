@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import styled from 'styled-components'
 import CriarPlaylist from './components/CriarPlaylist';
 import VisualizarPlaylist from './components/VisualizarPlaylist';
@@ -8,11 +8,19 @@ const Main = styled.div`
   display: flex;
   flex-direction: column;
   align-items:center;
+  height:100vh;
+  background-color: #CCCDCE;
 `
 const Tela = styled.div`
-  border: 1px solid black;
+  border: 1px solid #878788;
   width: 50%;
+  background-color:#B9BBBC;
+  border-radius: 0px 0px 4% 4%;
 `
+const Botao = styled.button`
+  height: 40px;
+`
+
 const baseUrl = 'https://us-central1-spotif4.cloudfunctions.net/api';
 const authToken = 'andrius';
 
@@ -29,31 +37,30 @@ class App extends React.Component {
   trocaTela = (telaAtual)=>{
     switch(telaAtual){
       case "CriarPlaylist":
-        return (<Fragment> <CriarPlaylist baseUrl={baseUrl} authToken={authToken} /> </Fragment>)
+        return (<CriarPlaylist baseUrl={baseUrl} authToken={authToken} />)
       case "VisualizarPlaylist":
-        return (<Fragment> <VisualizarPlaylist baseUrl={baseUrl} authToken={authToken} trocaTela={(telaAtual, idPlaylist)=>{this.setState({telaAtual: telaAtual, idPlaylist: idPlaylist})}} /> </Fragment>)
+        return (<VisualizarPlaylist baseUrl={baseUrl} authToken={authToken} trocaTela={(telaAtual, idPlaylist)=>{this.setState({telaAtual: telaAtual, idPlaylist: idPlaylist})}} />)
       case "DetalhePlaylist":
-        return (<Fragment> <DetalhePlaylist baseUrl={baseUrl} authToken={authToken} idPlaylist={this.state.idPlaylist} /> </Fragment>)
+        return (<DetalhePlaylist baseUrl={baseUrl} authToken={authToken} idPlaylist={this.state.idPlaylist} />)
       default:
-        return (<Fragment> <span>Tela não encontrada</span> </Fragment>)
+        return (<span>Tela não encontrada</span>)
     }
   }
   render() {
     return (
       <Main>
-
         <nav>
-          <button onClick={()=>{
+          <Botao onClick={()=>{
             this.setState({
               telaAtual: "CriarPlaylist"
             })
-          }}>Criar Playlist</button>
+          }}>Criar Playlist</Botao>
 
-          <button onClick={()=>{
+          <Botao onClick={()=>{
             this.setState({
               telaAtual: "VisualizarPlaylist"
             })
-          }}>Visualizar Playlists</button>
+          }}>Visualizar Playlists</Botao>
         </nav>
         
         <Tela>
