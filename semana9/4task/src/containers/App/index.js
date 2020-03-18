@@ -4,12 +4,11 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { connect } from "react-redux";
-import { addTask, markAllComplete, filterTasks } from "../../actions";
+import { addTask, markAllComplete, filterTasks, removeAllCompleted } from "../../actions";
 import Tasks from "../Tasks";
 
 const theme = createMuiTheme({
@@ -77,6 +76,14 @@ class App extends React.Component {
             inputName: e.target.value
         })
     }
+    checkEnterKey = (e)=>{
+        if (e.keyCode===13){
+            this.props.addTask(this.state.inputName)
+            this.setState({
+                inputName: ''
+            })
+        }
+    }
     render(){
     return (
         <MuiThemeProvider theme={theme}>
@@ -88,13 +95,13 @@ class App extends React.Component {
                             <InputTask
                                 value={this.state.inputName}
                                 onChange={this.onChangeInputName}
+                                onKeyDown={this.checkEnterKey}
                                 placeholder="Oque tem que ser feito?"
                                 className={classes.input}
                                 inputProps={{
                                     'aria-label': 'Description',
                                 }}
                             />
-                            <button onClick={()=>{this.props.addTask(this.state.inputName)}}>Enviar</button>
                             <Tasks />
                             <Menu>
                                 <Button className={classes.button} onClick={
@@ -103,7 +110,7 @@ class App extends React.Component {
                                 <Button onClick={()=>{this.props.filterTasks("all")}} className={classes.button}>Todas</Button>|
                                 <Button onClick={()=>{this.props.filterTasks("pending")}} className={classes.button}>Pendentes</Button>|
                                 <Button onClick={()=>{this.props.filterTasks("completed")}} className={classes.button}>Completas</Button>|
-                                <Button onClick={()=>{this.props.filterTasks("removeCompleted")}} className={classes.button}>Remover completas</Button>
+                                <Button onClick={this.props.removeAllCompleted} className={classes.button}>Remover completas</Button>
                             </Menu>
                         </Typography>
                     </CardContent>
@@ -118,7 +125,8 @@ const mapDispatchToProps = dispatch => {
     return {
         addTask: name => dispatch(addTask(name)),
         markAllComplete: ()=> dispatch(markAllComplete()),
-        filterTasks: filter => dispatch(filterTasks(filter))
+        filterTasks: filter => dispatch(filterTasks(filter)),
+        removeAllCompleted: ()=> dispatch(removeAllCompleted())
     };
 };
 

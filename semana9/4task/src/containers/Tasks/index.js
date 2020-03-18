@@ -5,9 +5,20 @@ import { toggleTask, removeTask } from "../../actions"
 
 
 function showList(props) {
-    console.log(props.filter)
-    const list = props.task.map((task) => {
-        return (<li key={task.id} onClick={() => { props.toggleTask(task.id) }}>completo:{task.completed ? <Fragment>TOGGLE</Fragment> : <Fragment>NO TOGGLE</Fragment>} name: {task.name} <button onClick={() => { props.removeTask(task.id) }}>DELETAR</button></li>)
+    const list = props.task.filter(task => {
+        if (props.filter === "all") {
+            return true
+        }
+        else if (props.filter === "pending") {
+            console.log(task.completed)
+            return task.completed === false
+        }
+        else if (props.filter === "completed") {
+            return task.completed === true
+        }
+        return true
+    }).map((task) => {
+        return (<li key={task.id} onClick={() => { props.toggleTask(task.id) }}>{task.completed ? <Fragment>TOGGLE</Fragment> : <Fragment>NO TOGGLE</Fragment>} name: {task.name} <button onClick={() => { props.removeTask(task.id) }}>DELETAR</button></li>)
     })
     return list
 }

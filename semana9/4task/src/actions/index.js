@@ -35,3 +35,8 @@ export const filterTasks = (filter) =>{
         }
     }
 }
+export const removeAllCompleted = () =>{
+    return {
+        type: "REMOVE_ALL_COMPLETED"
+    }
+}

@@ -7,11 +7,10 @@ const tasks = (state = initialState, action) => {
     switch (action.type) {
         case "ADD_TASK":
             {
-                let task = state
                 const newTask = {
                     id: Date.now(),
                     name: action.payload.name,
-                    compĺeted: false
+                    completed: false
                 }
                 return {
                     ...state,
@@ -23,15 +22,15 @@ const tasks = (state = initialState, action) => {
                 const newList = state.tasksList.map(task => {
                     if (task.id === action.payload.id) {
                         return {
-                            completed: !task.completed,
-                            ...task
+                            ...task,
+                            completed: !task.completed
                         }
                     }
                     return task
                 })
                 return {
-                    tasksList: newList,
-                    ...state
+                    ...state,
+                    tasksList: newList
                 }
             }
         case "REMOVE_TASK":
@@ -43,29 +42,39 @@ const tasks = (state = initialState, action) => {
                     return true
                 })
                 return {
-                    tasksList: newList,
-                    ...state
+                    ...state,
+                    tasksList: newList
                 }
             }
         case "MARK_ALL_COMPLETE":
             {
                 const newList = state.tasksList.map(task => {
                     return {
-                        completed: true,
-                        ...task
+                        ...task,
+                        completed: true
                     }
                 })
                 console.log(newList)
                 return {
-                    tasksList: newList,
-                    ...state
+                    ...state,
+                    tasksList: newList
                 }
             }
         case "FILTER_TASKS":
             {
                 return {
-                    filter: action.payload.filter,
-                    ...state
+                    ...state,
+                    filter: action.payload.filter
+                }
+            }
+        case "REMOVE_ALL_COMPLETED":
+            {
+                const newList = state.tasksList.filter(task => {
+                    return task.completed===false
+                })
+                return {
+                    ...state,
+                    tasksList: newList
                 }
             }
         default:
