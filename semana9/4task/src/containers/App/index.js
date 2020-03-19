@@ -5,10 +5,12 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { MuiThemeProvider } from '@material-ui/core/styles';
+import {
+    MuiThemeProvider,
+    createMuiTheme
+} from '@material-ui/core/styles';
 import { connect } from "react-redux";
-import { addTask, markAllComplete, filterTasks, removeAllCompleted } from "../../actions";
+import { createTask, fetchTasks, markAllComplete, filterTasks, deleteTakscompleted } from "../../actions";
 import Tasks from "../Tasks";
 
 const theme = createMuiTheme({
@@ -78,11 +80,14 @@ class App extends React.Component {
     }
     checkEnterKey = (e)=>{
         if (e.keyCode===13){
-            this.props.addTask(this.state.inputName)
+            this.props.createTask(this.state.inputName)
             this.setState({
                 inputName: ''
             })
         }
+    }
+    componentDidMount(){
+        this.props.fetchTasks()
     }
     render(){
     return (
@@ -110,7 +115,7 @@ class App extends React.Component {
                                 <Button onClick={()=>{this.props.filterTasks("all")}} className={classes.button}>Todas</Button>|
                                 <Button onClick={()=>{this.props.filterTasks("pending")}} className={classes.button}>Pendentes</Button>|
                                 <Button onClick={()=>{this.props.filterTasks("completed")}} className={classes.button}>Completas</Button>|
-                                <Button onClick={this.props.removeAllCompleted} className={classes.button}>Remover completas</Button>
+                                <Button onClick={this.props.deleteTakscompleted} className={classes.button}>Remover completas</Button>
                             </Menu>
                         </Typography>
                     </CardContent>
@@ -123,10 +128,11 @@ class App extends React.Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addTask: name => dispatch(addTask(name)),
+        createTask: name => dispatch(createTask(name)),
+        fetchTasks: ()=>dispatch(fetchTasks()),
         markAllComplete: ()=> dispatch(markAllComplete()),
         filterTasks: filter => dispatch(filterTasks(filter)),
-        removeAllCompleted: ()=> dispatch(removeAllCompleted())
+        deleteTakscompleted: ()=> dispatch(deleteTakscompleted())
     };
 };
 

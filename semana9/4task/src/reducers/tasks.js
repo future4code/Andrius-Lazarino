@@ -1,5 +1,5 @@
 const initialState = {
-    tasksList: [{ id: 1, name: 'Use redux', completed: false }],
+    tasksList: [{ id: 1, text: 'Use redux', done: false }],
     filter: "all"
 };
 
@@ -9,8 +9,8 @@ const tasks = (state = initialState, action) => {
             {
                 const newTask = {
                     id: Date.now(),
-                    name: action.payload.name,
-                    completed: false
+                    text: action.payload.text,
+                    done: false
                 }
                 return {
                     ...state,
@@ -23,7 +23,7 @@ const tasks = (state = initialState, action) => {
                     if (task.id === action.payload.id) {
                         return {
                             ...task,
-                            completed: !task.completed
+                            done: !task.done
                         }
                     }
                     return task
@@ -51,7 +51,7 @@ const tasks = (state = initialState, action) => {
                 const newList = state.tasksList.map(task => {
                     return {
                         ...task,
-                        completed: true
+                        done: true
                     }
                 })
                 console.log(newList)
@@ -70,11 +70,18 @@ const tasks = (state = initialState, action) => {
         case "REMOVE_ALL_COMPLETED":
             {
                 const newList = state.tasksList.filter(task => {
-                    return task.completed===false
+                    return task.done===false
                 })
                 return {
                     ...state,
                     tasksList: newList
+                }
+            }
+        case "SET_TASKS":
+            {
+                return {
+                    ...state,
+                    tasksList: action.payload.tasksList
                 }
             }
         default:
