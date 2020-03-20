@@ -1,11 +1,12 @@
 const initialState = {
-  profile:{
+  profile: {
     id: 1,
     age: 26,
     name: "andrius",
     photo: "sem foto",
     bio: "sem bio"
-  }
+  },
+  matches: []
 }
 
 const profiles = (state = initialState, action) => {
@@ -15,6 +16,13 @@ const profiles = (state = initialState, action) => {
         const profile = action.payload.profile
         return {
           profile: profile
+        }
+      }
+    case "SET_MATCHES":
+      {
+        const matches = action.payload.matches
+        return {
+          matches: matches
         }
       }
     default:
