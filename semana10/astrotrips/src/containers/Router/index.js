@@ -12,7 +12,7 @@ import TripDetailPage from "../TripDetailsPage"
 
 
 
-const routes = {
+export const routes = {
   root: "/",
   applicationForm: "/application-form",
   login: "/login",
@@ -22,19 +22,20 @@ const routes = {
   // Outras rotas aqui
 };
 
-function Router(props) {
+const Router = props => {
   return (
     <ConnectedRouter history={props.history}>
       <Switch>
-        <Route exact patch={routes.root} component={HomePage} />
-        <Route exact patch={routes.applicationForm} component={ApplicationForm} />
-        <Route exact patch={routes.login} component={LoginPage} />
-        <Route exact patch={routes.createTrip} component={CreateTripPage} />
-        <Route exact patch={routes.listTrips} component={ListTripsPage} />
-        <Route exact patch={routes.tripDetails} component={TripDetailPage} />
+        <Route exact path={routes.root} component={HomePage} />
+        <Route exact path={routes.applicationForm} component={ApplicationForm} />
+        <Route exact path={routes.login} component={LoginPage} />
+        <Route exact path={routes.createTrip} component={CreateTripPage} />
+        <Route exact path={routes.listTrips} component={ListTripsPage} />
+        <Route exact path={routes.tripDetails} component={TripDetailPage} />
       </Switch>
     </ConnectedRouter>
   );
-}
+};
+
 
 export default Router;
