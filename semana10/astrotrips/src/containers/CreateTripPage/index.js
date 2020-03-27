@@ -15,7 +15,7 @@ const tripForm = [
         name: "planet",
         label: "Planeta de destino",
         type: "select",
-        options: ['Mercurio', 'Venus', 'Terra', 'Marte', 'Jupiter', 'Saturno', 'Urano', 'Netuno'],
+        options: ['Selecione um planeta', 'Mercurio', 'Venus', 'Terra', 'Marte', 'Jupiter', 'Saturno', 'Urano', 'Netuno'],
         required: true,
         title: "Selecione um planeta"
     },
@@ -117,9 +117,8 @@ class CreateTripPage extends React.Component {
                     }
                 })}
                 <button onClick={() => {
-                    const tripData = this.state
-                    console.log(tripData)
-                    this.props.createTrip(tripData)
+                    const tripData = this.state.form
+                    this.props.createTrip(tripData, token)
                 }}>Criar viagem</button>
             </div>
         )
@@ -127,7 +126,7 @@ class CreateTripPage extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    createTrip: () => dispatch(createTrip())
+    createTrip: (tripData, token) => dispatch(createTrip(tripData, token))
 })
 
 export default connect(null, mapDispatchToProps)(CreateTripPage);

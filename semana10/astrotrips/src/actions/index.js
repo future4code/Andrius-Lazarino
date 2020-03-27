@@ -2,7 +2,7 @@ import axios from "axios";
 import { push } from 'connected-react-router';
 import { routes } from '../containers/Router';
 
-export const setListTrips = (trips) =>{
+export const setListTrips = (trips) => {
     return {
         type: "SET_LIST_TRIPS",
         payload: {
@@ -11,7 +11,7 @@ export const setListTrips = (trips) =>{
     }
 }
 
-export const setDetailTrip = (detailTrip) =>{
+export const setDetailTrip = (detailTrip) => {
     return {
         type: "SET_DETAIL_TRIP",
         payload: {
@@ -20,7 +20,7 @@ export const setDetailTrip = (detailTrip) =>{
     }
 }
 
-export const setId = (id) =>{
+export const setId = (id) => {
     return {
         type: "SET_ID",
         payload: {
@@ -58,12 +58,18 @@ export const fetchTrips = () => async (dispatch) => {
 }
 
 export const fetchDetails = (id, token) => async (dispatch) => {
-    const response = await axios.get(`https://us-central1-missao-newton.cloudfunctions.net/futureX/andrius/trip/${id}`,{ headers: {auth: token} })
+    const response = await axios.get(`https://us-central1-missao-newton.cloudfunctions.net/futureX/andrius/trip/${id}`, { headers: { auth: token } })
     dispatch(setDetailTrip(response.data.trip))
 }
 
-export const createTrip = (trip, token) => async(dispatch) => {
-    const tripData = trip
-    console.log(tripData)
-    // const response = await axios.post(`https://us-central1-missao-newton.cloudfunctions.net/futureX/andrius/trips`,tripData,{headers: {auth: token}})
+export const createTrip = (tripData, token) => async (dispatch) => {
+    const data = {
+        "name": tripData.name,
+        "planet": tripData.planet,
+        "date": tripData.date,
+        "description": tripData.description,
+        "durationInDays": tripData.duration
+    }
+    console.log(token)
+    const response = await axios.post(`https://us-central1-missao-newton.cloudfunctions.net/futureX/andrius/trips`, data, { headers: { auth: token } })
 }

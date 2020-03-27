@@ -1,4 +1,6 @@
 import React from "react"
+import { connect } from "react-redux"
+import { fetchTrips } from "../../actions"
 
 
 const tripForm = [
@@ -26,7 +28,7 @@ const tripForm = [
     },
     {
         name: "texto",
-        label:"Texto do passageiro",
+        label: "Texto do passageiro",
         type: "text",
         required: true,
         //ADICIONAR PATTERN
@@ -51,7 +53,10 @@ class ApplicationForm extends React.Component {
         }
     }
 
-    
+    componentDidMount(){
+        this.props.fetchTrips()
+    }
+
     handleInputChange = e => {
         const { name, value } = e.target
         this.setState({
@@ -63,6 +68,7 @@ class ApplicationForm extends React.Component {
     }
 
     render() {
+        console.log(this.props.listTrips)
         return (
             <div>
                 Formulario de inscrição
@@ -89,14 +95,15 @@ class ApplicationForm extends React.Component {
                                 <div key={input.name}>
                                     <label>{input.name}</label>
                                     <select
-                                    name={FileReader.name}
-                                    type={FileReader.type}
-                                    required={FileReader.required}
-                                    onChange={this.handleInputChange}
-                                    value={this.state.form[input.name] || ""}
+                                        name={input.name}
+                                        type={input.type}
+                                        required={input.required}
+                                        onChange={this.handleInputChange}
+                                        value={this.state.form[input.name] || ""}
                                     >
-                                        <option value="1">Testando1</option>
-                                        <option value="2">Testando2</option>
+                                        {this.props.listTrips.map(trip=>{
+                                            return (<option key={trip.id} value={trip.id}>{trip.name}</option>)
+                                        })}
                                     </select>
                                 </div>
                             )
@@ -109,6 +116,14 @@ class ApplicationForm extends React.Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        listTrips: state.trips.listTrips
+    }
+}
 
+const mapDispatchToProps = dispatch => ({
+    fetchTrips: () => dispatch(fetchTrips())
+})
 
-export default ApplicationForm;
+export default connect(mapStateToProps, mapDispatchToProps)(ApplicationForm);
