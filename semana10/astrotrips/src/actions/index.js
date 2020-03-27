@@ -61,3 +61,9 @@ export const fetchDetails = (id, token) => async (dispatch) => {
     const response = await axios.get(`https://us-central1-missao-newton.cloudfunctions.net/futureX/andrius/trip/${id}`,{ headers: {auth: token} })
     dispatch(setDetailTrip(response.data.trip))
 }
+
+export const createTrip = (trip, token) => async(dispatch) => {
+    const tripData = trip
+    console.log(tripData)
+    // const response = await axios.post(`https://us-central1-missao-newton.cloudfunctions.net/futureX/andrius/trips`,tripData,{headers: {auth: token}})
+}

@@ -1,5 +1,6 @@
 import React from "react"
 
+
 const tripForm = [
     {
         name: "nome",
@@ -41,6 +42,7 @@ const tripForm = [
     }
 ]
 
+
 class ApplicationForm extends React.Component {
     constructor(props) {
         super(props)
@@ -49,6 +51,7 @@ class ApplicationForm extends React.Component {
         }
     }
 
+    
     handleInputChange = e => {
         const { name, value } = e.target
         this.setState({
@@ -92,8 +95,8 @@ class ApplicationForm extends React.Component {
                                     onChange={this.handleInputChange}
                                     value={this.state.form[input.name] || ""}
                                     >
-                                        <option>Testando1</option>
-                                        <option>Testando2</option>
+                                        <option value="1">Testando1</option>
+                                        <option value="2">Testando2</option>
                                     </select>
                                 </div>
                             )
@@ -105,4 +108,7 @@ class ApplicationForm extends React.Component {
         )
     }
 }
+
+
+
 export default ApplicationForm;

@@ -18,13 +18,48 @@ class TripDetailsPage extends React.Component {
         }
     }
 
-    render() {
+    listDetails = () => {
         console.log(this.props.detailTrip)
+        // console.log("testando")
+        if (this.props.detailTrip !== undefined) {
+            const { planet, date, durationInDays, name, description, candidates } = this.props.detailTrip
+            return (
+                <div>
+                    <div>
+                        <div>
+                            <p>{planet}</p>
+                            <p>{date}</p>
+                            <p>{durationInDays}</p>
+                        </div>
+                        <div>
+                            <h3>{name}</h3>
+                            <p>{description}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3>Inscrições</h3>
+                        {
+                            candidates.map((candidate, index) => {
+                                return (
+                                    <div key={index}>
+                                        <p>Nome: {candidate.name} Idade: {candidate.age} País: {candidate.country}</p>
+                                        <p>Profissão: {candidate.profession}</p>
+                                        <p>Descrição: {candidate.applicationText}</p>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                </div>
+            )
+        }
+    }
+
+    render() {
+        // console.log(this.props.detailTrip)
         return (
             <div>
-                <div>
-                    <p>{}</p>
-                </div>
+                {this.listDetails()}
             </div>
         )
     }

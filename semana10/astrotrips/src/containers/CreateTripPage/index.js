@@ -1,8 +1,10 @@
 import React from "react"
+import { connect } from "react-redux"
+import { createTrip } from "../../actions"
 
 const tripForm = [
     {
-        name: "nome",
+        name: "name",
         label: "Nome da viagem",
         type: "text",
         required: true,
@@ -10,21 +12,23 @@ const tripForm = [
         title: "Nome da viagem deve ter no minimo 5 letras"
     },
     {
-        name: "planeta",
+        name: "planet",
         label: "Planeta de destino",
         type: "select",
+        options: ['Mercurio', 'Venus', 'Terra', 'Marte', 'Jupiter', 'Saturno', 'Urano', 'Netuno'],
         required: true,
+        title: "Selecione um planeta"
     },
     {
-        name: "data",
-        label:"data da viagem",
+        name: "date",
+        label: "data da viagem",
         type: "text",
         required: true,
         //ADICIONAR PATTERN
         title: "A data deve estar no futuro"
     },
     {
-        name: "descricao",
+        name: "description",
         label: "Descricao da viagem",
         type: "text",
         required: true,
@@ -32,7 +36,7 @@ const tripForm = [
         title: "A descrição da viagem deve ter no minimo 30 letras"
     },
     {
-        name: "duracao",
+        name: "duration",
         label: "Duracao da viagem",
         type: "text",
         required: true,
@@ -41,54 +45,89 @@ const tripForm = [
     }
 ]
 
+const token = window.localStorage.getItem("token")
+
 class CreateTripPage extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
-        this.state= {
-            form:{}
+        this.state = {
+            form: {}
         }
     }
-    render() {
 
+    componentDidMount() {
+        if (token === null) {
+            this.props.goToLogin()
+        } else {
+
+        }
+    }
+
+    handleInputChange = e => {
+        const { name, value } = e.target
+        console.log(name)
+        console.log(value)
+        this.setState({
+            form: {
+                ...this.state.form,
+                [name]: value
+            }
+        })
+    }
+
+    render() {
         return (
             <div>
-                {tripForm.map(input => {
-                        if (input.type === "text") {
-                            return (
-                                <div key={input.name}>
-                                    <label htmlFor={input.name}>{input.label}: </label>
-                                    <input
-                                        id={input.name}
+                {tripForm.map((input, index) => {
+                    if (input.type === "text") {
+                        return (
+                            <div key={index}>
+                                <label htmlFor={input.name}>{input.label}: </label>
+                                <input
+                                    id={input.name}
+                                    name={input.name}
+                                    type={input.type}
+                                    value={this.state.form[input.name] || ""}
+                                    required={input.required}
+                                    onChange={this.handleInputChange}
+                                    pathern={input.pattern}
+                                />
+                            </div>
+                        )
+                    }
+                    else {
+                        return (
+                            <div key={index}>
+                                <label>{input.name}</label>
+                                <div>
+                                    <select
                                         name={input.name}
                                         type={input.type}
-                                        value={this.state.form[input.name] || ""}
                                         required={input.required}
                                         onChange={this.handleInputChange}
-                                        pathern={input.pattern}
-                                    />
-                                </div>
-                            )
-                        }
-                        else {
-                            return (
-                                <div key={input.name}>
-                                    <label>{input.name}</label>
-                                    <select
-                                    name={FileReader.name}
-                                    type={FileReader.type}
-                                    required={FileReader.required}
-                                    onChange={this.handleInputChange}
-                                    value={this.state.form[input.name] || ""}
+                                        value={this.state.form[input.name] || ""}
                                     >
-                                        <option>Testando1</option>
-                                        <option>Testando2</option>
+                                        {input.options.map((option) => {
+                                            return (<option key={option} value={option}>{option}</option>)
+                                        })}
                                     </select>
                                 </div>
-                            )
-                        }
-                    })}
+                            </div>
+                        )
+                    }
+                })}
+                <button onClick={() => {
+                    const tripData = this.state
+                    console.log(tripData)
+                    this.props.createTrip(tripData)
+                }}>Criar viagem</button>
             </div>
         )
     }
 }
-export default CreateTripPage;
+
+const mapDispatchToProps = dispatch => ({
+    createTrip: () => dispatch(createTrip())
+})
+
+export default connect(null, mapDispatchToProps)(CreateTripPage);
