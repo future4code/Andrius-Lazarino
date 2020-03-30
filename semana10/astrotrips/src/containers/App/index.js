@@ -8,8 +8,21 @@ import { createBrowserHistory } from "history";
 import { createStore, applyMiddleware, compose } from "redux";
 import { generateReducers } from "../../reducers";
 import { routerMiddleware } from "connected-react-router";
+import styled from "styled-components";
+
+import HeadMenu from "../HeadMenu"
+
+
 
 export const history = createBrowserHistory();
+
+
+
+const Body = styled.div`
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+`
 
 const middlewares = [
   applyMiddleware(routerMiddleware(history), thunk),
@@ -20,11 +33,14 @@ const middlewares = [
 
 const store = createStore(generateReducers(history), compose(...middlewares));
 
-export const App = () => (
+export const App = (props) => (
   <Provider store={store}>
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
-      <Router history={history} />
+      <Body>
+        <HeadMenu/>
+        <Router history={history} />
+      </Body>
     </MuiThemeProvider>
   </Provider>
 );
