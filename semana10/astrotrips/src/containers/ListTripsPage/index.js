@@ -30,7 +30,6 @@ class listTripsPage extends React.Component {
     }
 
     render() {
-        console.log(this.props.listTrips)
         return (
             <ListWrapper>
                 {this.props.listTrips.map((trip,index) => {
@@ -63,11 +62,11 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDiapatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch) => ({
     goToLogin: () => dispatch(push(routes.login)),
     fetchTrips: () => dispatch(fetchTrips()),
     setId: (id) => dispatch(setId(id)),
     goToDetails: () => dispatch(push(routes.tripDetails))
 })
 
-export default connect(mapStateToProps, mapDiapatchToProps)(listTripsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(listTripsPage);

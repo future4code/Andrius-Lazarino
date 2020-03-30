@@ -65,8 +65,6 @@ class CreateTripPage extends React.Component {
 
     handleInputChange = e => {
         const { name, value } = e.target
-        console.log(name)
-        console.log(value)
         this.setState({
             form: {
                 ...this.state.form,
@@ -75,51 +73,55 @@ class CreateTripPage extends React.Component {
         })
     }
 
+    handleCreate = e => {
+        const tripData = this.state.form
+        this.props.createTrip(tripData, token)
+    }
+
     render() {
         return (
             <div>
-                {tripForm.map((input, index) => {
-                    if (input.type === "text") {
-                        return (
-                            <div key={index}>
-                                <label htmlFor={input.name}>{input.label}: </label>
-                                <input
-                                    id={input.name}
-                                    name={input.name}
-                                    type={input.type}
-                                    value={this.state.form[input.name] || ""}
-                                    required={input.required}
-                                    onChange={this.handleInputChange}
-                                    pathern={input.pattern}
-                                />
-                            </div>
-                        )
-                    }
-                    else {
-                        return (
-                            <div key={index}>
-                                <label>{input.name}</label>
-                                <div>
-                                    <select
+                <form onSubmit={this.handleCreate}>
+                    {tripForm.map((input, index) => {
+                        if (input.type === "text") {
+                            return (
+                                <div key={index}>
+                                    <label htmlFor={input.name}>{input.label}: </label>
+                                    <input
+                                        id={input.name}
                                         name={input.name}
                                         type={input.type}
+                                        value={this.state.form[input.name] || ""}
                                         required={input.required}
                                         onChange={this.handleInputChange}
-                                        value={this.state.form[input.name] || ""}
-                                    >
-                                        {input.options.map((option) => {
-                                            return (<option key={option} value={option}>{option}</option>)
-                                        })}
-                                    </select>
+                                        pathern={input.pattern}
+                                    />
                                 </div>
-                            </div>
-                        )
-                    }
-                })}
-                <button onClick={() => {
-                    const tripData = this.state.form
-                    this.props.createTrip(tripData, token)
-                }}>Criar viagem</button>
+                            )
+                        }
+                        else {
+                            return (
+                                <div key={index}>
+                                    <label>{input.name}</label>
+                                    <div>
+                                        <select
+                                            name={input.name}
+                                            type={input.type}
+                                            required={input.required}
+                                            onChange={this.handleInputChange}
+                                            value={this.state.form[input.name] || ""}
+                                        >
+                                            {input.options.map((option) => {
+                                                return (<option key={option} value={option}>{option}</option>)
+                                            })}
+                                        </select>
+                                    </div>
+                                </div>
+                            )
+                        }
+                    })}
+                    <button type="submit">Criar viagem</button>
+                </form>
             </div>
         )
     }

@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
-import { fetchDetails } from "../../actions"
+import { fetchDetails, setApproved } from "../../actions"
 
 const token = window.localStorage.getItem("token")
 
@@ -19,17 +19,15 @@ class TripDetailsPage extends React.Component {
     }
 
     listDetails = () => {
-        console.log(this.props.detailTrip)
-        // console.log("testando")
         if (this.props.detailTrip !== undefined) {
-            const { planet, date, durationInDays, name, description, candidates } = this.props.detailTrip
+            const { planet, date, durationInDays, name, description, candidates, approved } = this.props.detailTrip
             return (
                 <div>
                     <div>
                         <div>
                             <p>{planet}</p>
                             <p>{date}</p>
-                            <p>{durationInDays}</p>
+                            <p>{durationInDays} dias</p>
                         </div>
                         <div>
                             <h3>{name}</h3>
@@ -38,6 +36,19 @@ class TripDetailsPage extends React.Component {
                     </div>
                     <div>
                         <h3>Inscrições</h3>
+                        <h4>Aprovados</h4>
+                        {
+                            approved.map((candidate, index) => {
+                                return (
+                                    <div key={index}>
+                                        <p>Nome: {candidate.name} Idade: {candidate.age} País: {candidate.country}</p>
+                                        <p>Profissão: {candidate.profession}</p>
+                                        <p>Descrição: {candidate.applicationText}</p>
+                                    </div>
+                                )
+                            })
+                        }
+                        <h4>Candidatos</h4>
                         {
                             candidates.map((candidate, index) => {
                                 return (
@@ -45,6 +56,12 @@ class TripDetailsPage extends React.Component {
                                         <p>Nome: {candidate.name} Idade: {candidate.age} País: {candidate.country}</p>
                                         <p>Profissão: {candidate.profession}</p>
                                         <p>Descrição: {candidate.applicationText}</p>
+                                        <button onClick={()=>{
+                                            this.props.setApproved(this.props.detailTrip.id,candidate.id, true, token)
+                                        }}>Aprovar</button>
+                                        <button onClick={()=>{
+                                            this.props.setApproved(this.props.detailTrip.id,candidate.id, false, token)
+                                        }}>Rejeitar</button>
                                     </div>
                                 )
                             })
@@ -56,7 +73,6 @@ class TripDetailsPage extends React.Component {
     }
 
     render() {
-        // console.log(this.props.detailTrip)
         return (
             <div>
                 {this.listDetails()}
@@ -73,7 +89,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    fetchDetails: (id, token) => dispatch(fetchDetails(id, token))
+    fetchDetails: (id, token) => dispatch(fetchDetails(id, token)),
+    setApproved: (idTrip,idCandidade, approved, token) => dispatch(setApproved(idTrip,idCandidade, approved, token))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TripDetailsPage);

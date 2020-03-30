@@ -53,7 +53,6 @@ export const login = (email, password) => async (dispatch) => {
 
 export const fetchTrips = () => async (dispatch) => {
     const response = await axios.get(`https://us-central1-missao-newton.cloudfunctions.net/futureX/andrius/trips`)
-    // console.log( response.data.trips)
     dispatch(setListTrips(response.data.trips))
 }
 
@@ -70,6 +69,25 @@ export const createTrip = (tripData, token) => async (dispatch) => {
         "description": tripData.description,
         "durationInDays": tripData.duration
     }
-    console.log(token)
     const response = await axios.post(`https://us-central1-missao-newton.cloudfunctions.net/futureX/andrius/trips`, data, { headers: { auth: token } })
+}
+
+export const candidateTrip = (candidateData) => async (dispatch) => {
+    const data = {
+        "name": candidateData.name,
+        "age": candidateData.age,
+        "applicationText": candidateData.text,
+        "profession": candidateData.profession,
+        "country": candidateData.country
+    }
+    const response = await axios.post(`https://us-central1-missao-newton.cloudfunctions.net/futureX/andrius/trip/${candidateData.planet}`, data)
+    dispatch(push(routes.root))
+}
+
+export const setApproved = (idTrip,idCandidade, approved, token) => async (dispatch) =>{
+    const data = {
+        "approve": approved
+    }
+    const response = await axios.put(`https://us-central1-missao-newton.cloudfunctions.net/futureX/andrius/trips/${idTrip}/candidates/${idCandidade}/decide`, data, {headers: { auth: token }})
+    dispatch(push(routes.listTrips))
 }

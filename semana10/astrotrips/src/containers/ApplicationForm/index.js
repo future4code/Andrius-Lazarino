@@ -1,11 +1,11 @@
 import React from "react"
 import { connect } from "react-redux"
-import { fetchTrips } from "../../actions"
+import { fetchTrips, candidateTrip } from "../../actions"
 
 
 const tripForm = [
     {
-        name: "nome",
+        name: "name",
         label: "Nome do passageiro",
         type: "text",
         required: true,
@@ -13,7 +13,7 @@ const tripForm = [
         title: "Nome completo do passageiro deve ter no minimo 3 letras."
     },
     {
-        name: "idade",
+        name: "age",
         label: "Idade do passageiro",
         type: "text",
         required: true,
@@ -21,13 +21,13 @@ const tripForm = [
         title: "Idade"
     },
     {
-        name: "planeta",
-        label: "Planeta de destino",
+        name: "planet",
+        label: "Viagem",
         type: "select",
         required: true,
     },
     {
-        name: "texto",
+        name: "text",
         label: "Texto do passageiro",
         type: "text",
         required: true,
@@ -35,12 +35,20 @@ const tripForm = [
         title: "Texto do passageiro"
     },
     {
-        name: "Profissao",
+        name: "profession",
         label: "Profissão do passageiro",
         type: "text",
         required: true,
         //ADICIONAR PATTERN
         title: "Profissão do passageiro"
+    },
+    {
+        name: "country",
+        label: "País de origem do passageiro",
+        type: "text",
+        required: true,
+        //ADICIONAR PATTERN
+        tittle: "País de origem do passageiro"
     }
 ]
 
@@ -53,7 +61,7 @@ class ApplicationForm extends React.Component {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.fetchTrips()
     }
 
@@ -67,12 +75,17 @@ class ApplicationForm extends React.Component {
         })
     }
 
+    handleCandidate = (e) => {
+        e.preventDefault()
+        const candidateData = this.state.form
+        this.props.candidateTrip(candidateData)
+    }
+
     render() {
-        console.log(this.props.listTrips)
         return (
             <div>
                 Formulario de inscrição
-                <form>
+                <form onSubmit={this.handleCandidate}>
                     {tripForm.map(input => {
                         if (input.type === "text") {
                             return (
@@ -101,7 +114,8 @@ class ApplicationForm extends React.Component {
                                         onChange={this.handleInputChange}
                                         value={this.state.form[input.name] || ""}
                                     >
-                                        {this.props.listTrips.map(trip=>{
+                                        <option value={false}>Selecione uma viagem</option>
+                                        {this.props.listTrips.map(trip => {
                                             return (<option key={trip.id} value={trip.id}>{trip.name}</option>)
                                         })}
                                     </select>
@@ -109,6 +123,7 @@ class ApplicationForm extends React.Component {
                             )
                         }
                     })}
+                    <button type="submit">Inscrever-se</button>
                 </form>
 
             </div>
@@ -123,7 +138,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    fetchTrips: () => dispatch(fetchTrips())
+    fetchTrips: () => dispatch(fetchTrips()),
+    candidateTrip: (candidateData) => dispatch(candidateTrip(candidateData))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ApplicationForm);
