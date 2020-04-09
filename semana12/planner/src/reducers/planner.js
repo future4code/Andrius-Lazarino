@@ -12,3 +12,4 @@ const planner = (state = initialState, action) => {
         }
     }
 }
+export default planner;
