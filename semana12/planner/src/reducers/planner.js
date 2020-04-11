@@ -10,6 +10,11 @@ const planner = (state = initialState, action) => {
                 tasks: newTasks
             }
         }
+        default:{
+            return {
+                state
+            }
+        }
     }
 }
 export default planner;

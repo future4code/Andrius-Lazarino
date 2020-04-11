@@ -12,5 +12,6 @@ describe("Planner Reducer", () => {
         const newStore = planner(mockStore, newTaskAction)
         // console.log(newStore)
         expect(newStore.tasks).toHaveLength(1)
+        expect(newStore.tasks[0].)
     })
 })
