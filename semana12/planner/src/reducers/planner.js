@@ -1,13 +1,12 @@
 const initialState = {
-    tasks: []
+    tasks: {}
 }
 
 const planner = (state = initialState, action) => {
     switch (action.type) {
-        case "ADD_TASK":{
-            const newTasks = [...state.tasks, action.payload.task]
+        case "SET_TASKS":{
             return {
-                tasks: newTasks
+                tasks: action.payload.tasks
             }
         }
         default:{

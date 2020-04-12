@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import { createTask, fetchTasks } from "../../actions/planner"
 
 const PlannerWrapper = styled.form`
   width: 800px;
@@ -72,52 +73,94 @@ const plannerDaysForm = [
     value: "domingo",
     title: "Domingo"
   }
-  
+
 ]
 
 class Planner extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      selectedDay: false,
+      taskText: ""
+    }
+  }
+
+  componentDidMount() {
+    this.props.fetchTasks()
+  }
+
+  handleDayChange = (day) => {
+    this.setState({
+      selectedDay: day
+    })
+  }
+
+  handleTaskText = (e) => {
+    this.setState({
+      taskText: e.target.value
+    })
+  }
+
+  handleOnSubmit = (e) => {
+    e.preventDefault()
+    this.props.createTask(this.state.taskText, this.state.selectedDay)
+    this.setState({ taskText: "" })
+  }
+
   render() {
-    return <PlannerWrapper>
-      <h2>Planner</h2>  
-        <input />
-        <DaysSelect>
+    console.log(this.props.tasks)
+    return <PlannerWrapper onSubmit={this.handleOnSubmit}>
+      <h2>Planner</h2>
+      <input type="text" required={true} value={this.state.taskText} onChange={this.handleTaskText} />
+      <DaysSelect>
         {
-            plannerDaysForm.map((form)=>{
-              return (
-                <div key={form.value}>
-                  {form.label}
-                  <input type={form.type} name={form.name} value={form.value} onClick={()=>{console.log("Oi")}} />
-                </div>
-              )
-            })
-          }
-        </DaysSelect>
-        <button>Criar Tarefa</button>
-        <Days>
-          <Day>
-            <h3>SEGUNDA</h3>
-          </Day>
-          <Day>
-            <h3>TERÇA</h3>
-          </Day>
-          <Day>
-            <h3>QUARTA</h3>
-          </Day>
-          <Day>
-            <h3>QUINTA</h3>
-          </Day>
-          <Day>
-            <h3>SEXTA</h3>
-          </Day>
-          <Day>
-            <h3>SABADO</h3>
-          </Day>
-          <Day>
-            <h3>DOMINGO</h3>
-          </Day>
-        </Days>
+          plannerDaysForm.map((form) => {
+            return (
+              <div key={form.value}>
+                <input type={form.type} name={form.name} value={form.value} onClick={() => { this.handleDayChange(form.value) }} />
+                {form.label}
+              </div>
+            )
+          })
+        }
+      </DaysSelect>
+      <button>Criar Tarefa</button>
+      <Days>
+        <Day>
+          <h3>SEGUNDA</h3>
+        </Day>
+        <Day>
+          <h3>TERÇA</h3>
+        </Day>
+        <Day>
+          <h3>QUARTA</h3>
+        </Day>
+        <Day>
+          <h3>QUINTA</h3>
+        </Day>
+        <Day>
+          <h3>SEXTA</h3>
+        </Day>
+        <Day>
+          <h3>SABADO</h3>
+        </Day>
+        <Day>
+          <h3>DOMINGO</h3>
+        </Day>
+      </Days>
     </PlannerWrapper>;
   }
 }
 
-export default connect()(Planner);
+const mapStateToProps = state => {
+  return {
+    tasks: state.planner.tasks
+  }
+}
+
+const mapDispatchToProps = dispatch => ({
+  createTask: (text, day) => dispatch(createTask(text, day)),
+  fetchTasks: () => dispatch(fetchTasks())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Planner);
