@@ -25,7 +25,9 @@ export const setTasks = (tasks) => {
 export const createTask = (text, day) => async (dispatch) => {
     
     try {
-        const response = await axios.post(baseUrl, {"text": text, "day": day})
+        await axios.post(baseUrl, {"text": text, "day": day})
+        alert("Tarefa adicionada")
+        dispatch(fetchTasks())
     }
     catch (error) {
         console.error(error)

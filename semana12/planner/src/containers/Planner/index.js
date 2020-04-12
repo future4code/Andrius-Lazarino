@@ -107,8 +107,24 @@ class Planner extends React.Component {
     this.setState({ taskText: "" })
   }
 
+  showDay = (day) => {
+    if (this.props.tasks !== undefined) {
+      return (
+        this.props.tasks.filter(task => {
+          return (task.day === day)
+        }).map(task => { return (<div>{task.text}</div>) })
+      )
+    }else{
+      return (<div>Carregando...</div>)
+    }
+
+
+    // this.props.tasks!==undefined?this.props.tasks.filter(task => {
+    //   return (task.day === day)
+    // }).map(task=>{return (<div>{task.text}</div>)}):<div>Carregando...</div>
+  }
+
   render() {
-    console.log(this.props.tasks)
     return <PlannerWrapper onSubmit={this.handleOnSubmit}>
       <h2>Planner</h2>
       <input type="text" required={true} value={this.state.taskText} onChange={this.handleTaskText} />
@@ -128,24 +144,31 @@ class Planner extends React.Component {
       <Days>
         <Day>
           <h3>SEGUNDA</h3>
+          {this.showDay("segunda")}
         </Day>
         <Day>
           <h3>TERÇA</h3>
+          {this.showDay("terca")}
         </Day>
         <Day>
           <h3>QUARTA</h3>
+          {this.showDay("quarta")}
         </Day>
         <Day>
           <h3>QUINTA</h3>
+          {this.showDay("quinta")}
         </Day>
         <Day>
           <h3>SEXTA</h3>
+          {this.showDay("sexta")}
         </Day>
         <Day>
           <h3>SABADO</h3>
+          {this.showDay("sabado")}
         </Day>
         <Day>
           <h3>DOMINGO</h3>
+          {this.showDay("domingo")}
         </Day>
       </Days>
     </PlannerWrapper>;
