@@ -6,7 +6,7 @@ const mockStore = {
 }
 
 describe("Planner Reducer", () => {
-    test("ADD_TASK", () => {
+    test("SET_TASKS", () => {
         const mockText = "Programar a noite inteira"
         const newTaskAction = addTask(mockText)
         const newStore = planner(mockStore, newTaskAction)

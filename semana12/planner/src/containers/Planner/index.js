@@ -117,11 +117,6 @@ class Planner extends React.Component {
     }else{
       return (<div>Carregando...</div>)
     }
-
-
-    // this.props.tasks!==undefined?this.props.tasks.filter(task => {
-    //   return (task.day === day)
-    // }).map(task=>{return (<div>{task.text}</div>)}):<div>Carregando...</div>
   }
 
   render() {
