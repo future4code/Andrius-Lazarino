@@ -1,9 +1,4 @@
-type post = {
-    texto: string,
-    autor: string
-}
-
-const posts: post[]=[
+var posts = [
     {
         texto: "Texto1",
         autor: "Andrius"
@@ -24,12 +19,9 @@ const posts: post[]=[
         texto: "Texto5",
         autor: "Andrius5"
     },
-]
-
-const autor: string = "Andrius"
-
-console.log(retornaPosts(posts,autor))
-
-function retornaPosts(posts:post[],autor:string):post[] {
-    return posts.filter(post=>{return post.autor===autor})
+];
+var autor = "Andrius";
+console.log(retornaPosts(posts, autor));
+function retornaPosts(posts, autor) {
+    return posts.filter(function (post) { return post.autor === autor; });
 }
