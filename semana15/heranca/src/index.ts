@@ -9,17 +9,19 @@
 // Exercicio 3
 // A. Não seria possivel porque é uma propriedade privada e não tem um método para acessala
 
-// Resolução
-// const novoUsuario = new User("1","andrius.rochalazarino@gmail.com","Andrius","123456")
-// console.log(novoUsuario.getId())
-// console.log(novoUsuario.getName())
-// console.log(novoUsuario.getEmail())
-// console.log(novoCustomerUser.getName())
-// console.log(novoCustomerUser.getEmail())
-// console.log(novoCustomerUser.getCreditCard())
-// console.log(novoCustomerUser.purchaseTotal)
-// const novoCustomerUser = new Customer("1","andrius.rochalazarino@gmail.com","Andrius","123456", "432112345698")
-// console.log(novoCustomerUser.introduceYourself())
+// Exercicio 6
+// A. A mensagem "Chamando o construtor da classe User" foi impressa uma vez no terminal
+// B. id, name, email, introduceYourself, AdmissionDate, baseSalary
+
+// Exercicio 8
+// A. id, email, name, password, admissionDate, baseSalary
+// B. Imprime todas as propriedades menos o password porque o mesmo é privado e não existe um metodo getter para ele.
+
+// Exercicio 9
+// A. Não é possivel imprimir o valor salesQuantity porque o mesmo é private o não existe um metodo getter para o mesmo
+
+// Exercicio 10
+// A. Foi impresso o valor de 10054 porque a função caculateTotalSlary esta sobreescrevendo a função da classe pai
 
 class User {
     private id: string;
@@ -75,6 +77,7 @@ class Customer extends User {
 class Employee extends User {
     protected admissionDate: Date
     protected baseSalary: number
+    static BENEFITS_VALUE:number = 400
 
     constructor(id: string, email:string, name:string, password:string, admissionDate:Date, baseSalary:number) {
         super(id, email, name, password)
@@ -88,20 +91,54 @@ class Employee extends User {
     public getBaseSalary(): number {
         return this.baseSalary
     }
+    public calculateTotalSalary():number {
+        return this.baseSalary + Employee.BENEFITS_VALUE
+    }
+}
+
+class Seller extends Employee{
+    private salesQuantity:number = 0
+    static SELLING_COMMISSION:number = 5
+
+
+    public setSalesQuantity(salesQuantity:number):void {
+        this.salesQuantity = salesQuantity
+    }
+    public calculateTotalSalary():number {
+        return (this.baseSalary + 400 + (Seller.SELLING_COMMISSION*this.salesQuantity))
+    }
 }
 
 const funcionario = new Employee("1","andrius@email.com","Andrius","123456",new Date("2020-06-06"),6845)
 
-console.log(funcionario.getId())
-console.log(funcionario.getName())
-console.log(funcionario.getEmail())
-console.log(funcionario.introduceYourself())
-console.log(funcionario.getAdmissionDate())
-console.log(funcionario.getBaseSalary())
+const vendedor = new Seller("1", "andrius@email.com","Andrius", "123456", new Date("2020-06-06"),9639)
 
-
-
-
+// Resolução
+// const novoUsuario = new User("1","andrius.rochalazarino@gmail.com","Andrius","123456")
+// console.log(novoUsuario.getId())
+// console.log(novoUsuario.getName())
+// console.log(novoUsuario.getEmail())
+// console.log(novoCustomerUser.getName())
+// console.log(novoCustomerUser.getEmail())
+// console.log(novoCustomerUser.getCreditCard())
+// console.log(novoCustomerUser.purchaseTotal)
+// const novoCustomerUser = new Customer("1","andrius.rochalazarino@gmail.com","Andrius","123456", "432112345698")
+// console.log(novoCustomerUser.introduceYourself())
+// console.log(funcionario.getId())
+// console.log(funcionario.getName())
+// console.log(funcionario.getEmail())
+// console.log(funcionario.introduceYourself())
+// console.log(funcionario.getAdmissionDate())
+// console.log(funcionario.getBaseSalary())
+// console.log(funcionario.calculateTotalSalary())
+// console.log(vendedor.getId())
+// console.log(vendedor.getName())
+// console.log(vendedor.getEmail())
+// console.log(vendedor.getAdmissionDate())
+// console.log(vendedor.getBaseSalary())
+// vendedor.setSalesQuantity(5)
+// vendedor.setSalesQuantity(3)
+// console.log(vendedor.calculateTotalSalary())
 
 
 
