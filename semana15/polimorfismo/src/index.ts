@@ -10,6 +10,10 @@
 // B. Porque possui uma função que retorna um valor e em uma interface tudo é abstrato.
 // C. Porque ela é uma classe que serve de modelo ou base para outras classes e sozinha não consegue fazer quase nada.
 
+// Exercício 4
+// A. possui as propriedades: name, registrationNumber, consumedEnergy, cpf, residentsQuantity, cep para registrar um
+//endereço e os metodos getCpf para retornar o cpf porque a propriedade é privada e calculateBill para calcular a energia
+
 import {Client} from "./Client"
 import {Residence} from "./Residence";
 import {Commerce} from "./Commerce";
