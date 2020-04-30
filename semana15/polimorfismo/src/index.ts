@@ -24,12 +24,12 @@
 //de energia
 // C. Porque nenhum dado precisa ser alterado
 
-// Exercício 7
 
 import {Client} from "./Client"
 import {Residence} from "./Residence";
 import {Commerce} from "./Commerce";
 import {Industry} from "./Industry";
+import {ClientManager} from "./ClientManager";
 
 const objeto:Client = {
     name: "Andrius",
@@ -49,7 +49,10 @@ const residence = new Residence(2,"99333")
 const commerce =  new Commerce(6,"33999")
 const industry = new Industry(9,"93399")
 
-console.log(residence.getCep())
-console.log(commerce.getCep())
-console.log(industry.getCep()
-)
+// console.log(residence.getCep())
+// console.log(commerce.getCep())
+// console.log(industry.getCep()
+
+const clientManager = new ClientManager()
+
+clientManager.registerClient(industry)
