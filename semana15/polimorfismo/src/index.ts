@@ -14,6 +14,18 @@
 // A. possui as propriedades: name, registrationNumber, consumedEnergy, cpf, residentsQuantity, cep para registrar um
 //endereço e os metodos getCpf para retornar o cpf porque a propriedade é privada e calculateBill para calcular a energia
 
+// Exercício 5
+// A. As duas implementão a interface client
+// B. A classe residentialClient tem propriedades diferentes para diferenciar um cliente normal de um comercial
+
+// Exercício 6
+// A. Deve implementar a classe industry porque possui propriedades e métodos diferentes
+// B. Deve implementar a interface client porque ela obriga a classe colocar propriedades e métodos padrões para consumo
+//de energia
+// C. Porque nenhum dado precisa ser alterado
+
+// Exercício 7
+
 import {Client} from "./Client"
 import {Residence} from "./Residence";
 import {Commerce} from "./Commerce";
