@@ -103,7 +103,7 @@ JOIN Actor a ON mc.actor_id = a.id
 JOIN Rating r ON m.id = r.movie_id;
 ```
 
-#### Exercício 6
+### Exercício 6
 a) É uma relação M:N
 
 b) 
