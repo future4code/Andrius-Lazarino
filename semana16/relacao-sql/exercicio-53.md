@@ -86,3 +86,43 @@ SELECT AVG(r.rate), m.name FROM Rating r RIGHT JOIN  movies m ON r.movie_id = m.
 a) Porque precisamos pegar duas chaves primárias que estão salvas em uma tabela auxiliar para uni-las.
 
 b) 
+```MySql
+SELECT m.name as "Nome do filme", a.id as "ID do ator", a.name as "Nome do ator" FROM movies m
+LEFT JOIN MovieCast mc ON m.id = mc.movie_id
+JOIN Actor a ON a.id = mc.actor_id;
+```
+
+c) Ela retorna todos os filmes mesmo que não tenham atores
+
+d) 
+```MySql
+SELECT m.name as "Nome do filme", a.name as "Nome do ator", r.rate as "Nota", r.comment as "Comentario"
+FROM movies m
+LEFT JOIN MovieCast mc ON m.id = mc.movie_id
+JOIN Actor a ON mc.actor_id = a.id
+JOIN Rating r ON m.id = r.movie_id;
+```
+
+#### Exercício 6
+a) É uma relação M:N
+
+b) 
+```MySql
+CREATE TABLE Oscar (
+	id VARCHAR(255) PRIMARY KEY,
+    oscar_name VARCHAR(255) NOT NULL,
+    movie_id VARCHAR(255) NOT NULL,
+    date_win DATE NOT NULL,
+    FOREIGN KEY (movie_id) REFERENCES movies(id)
+);
+```
+
+c)
+```MySql
+INSERT INTO Oscar(id, oscar_name, movie_id, date_win) VALUES("002", "Óscar de melhor direção", "010","2020-01-06");
+```
+
+d)
+```MySql
+SELECT m.name as "Nome do filme", o.oscar_name as "Óscar" FROM movies m JOIN Oscar o ON m.id = o.movie_id
+```
