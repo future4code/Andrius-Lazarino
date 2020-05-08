@@ -2,6 +2,7 @@ import knex from "knex";
 import dotenv from "dotenv";
 import express, {Request, Response} from "express";
 import { AddressInfo } from "net";
+import moment from 'moment';
 
 dotenv.config()
 
@@ -119,9 +120,27 @@ app.post("/user/edit", async (req: Request, res: Response) =>{
     }
 })
 
+const createTask = async (
+    id:string,
+    title:string,
+    description:string,
+    limitDate:string,
+    creatorUserId:string,
+    res:Response)=>{
+    console.log(`${id}, ${title}, ${description}, ${limitDate}, ${creatorUserId}`)
+    
+}
+
+
 app.put("/task", async (req: Request, res: Response) => {
     try{
-
+        const id:string = Date.now().toString()
+        const title:string = req.body.title
+        const description:string = req.body.description
+        const limitDate:string =  moment(req.body.limitDate,"DD/MM/YYYY").format("DD/MM/YYYY").toString()
+        const creatorUserId = req.body.creatorUserId
+        createTask(id, title, description, limitDate, creatorUserId, res)
+        res.status(200).send
     }
     catch (err) {
         res.status(400).send({
