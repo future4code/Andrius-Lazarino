@@ -1,4 +1,5 @@
 import knex from "knex";
+import { format } from "url";
 
 export class UserDatabase {
     private connection = knex({
@@ -23,4 +24,22 @@ export class UserDatabase {
             })
             .into(UserDatabase.TABLE_NAME)
     }
+
+    public async getUserByEmail(email: string): Promise<any> {
+        const result = await this.connection
+        .select("*")
+        .from(UserDatabase.TABLE_NAME)
+        .where({ email: email })
+
+        return result[0]
+    }
+
+    public async getUserById(id: string): Promise<any> {
+        const result = await this.connection
+          .select("*")
+          .from(UserDatabase.TABLE_NAME)
+          .where({ id });
+    
+        return result[0];
+      }
 }

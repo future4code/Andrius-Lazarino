@@ -19,3 +19,10 @@ d)
 const db = new UserDatabase().createUser("001", "andrius@email.com", "123456")
 ```
 
+### Exercício 3
+a) Ela faz o typescript aceitar aquele valor como string mesmo que for undefined
+
+
+### Exercício 7
+a) ela faz com que o retorno da comparação aceite um tipo diferente
+
