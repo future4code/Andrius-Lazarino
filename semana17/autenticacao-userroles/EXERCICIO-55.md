@@ -7,3 +7,5 @@ a) Primeiro devemos modificar o cadastro porque precisamos criar novas senhas cr
 grafadas para poder comparar.
 
 d)
+
+### Exercício 3
