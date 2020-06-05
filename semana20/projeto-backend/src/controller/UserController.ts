@@ -40,6 +40,21 @@ export class UserController {
     }
   }
 
+  async signupAdmin(req: Request, res: Response) {
+    try {
+      const result = await UserController.UserBusiness.signupAdmin(
+        req.body.name,
+        req.body.email,
+        req.body.nickname,
+        req.body.password,
+        req.headers.authorization as string
+      );
+      res.status(200).send(result);
+    } catch (err) {
+      res.status(err.errorCode || 400).send({ message: err.message });
+    }
+  }
+
   public async login(req: Request, res: Response) {
     const email = req.body.email;
     const password = req.body.password;
