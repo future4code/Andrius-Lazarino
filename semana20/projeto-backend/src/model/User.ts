@@ -7,8 +7,10 @@ export class User {
     private email: string,
     private nickname: string,
     private password: string,
-    private type: UserType
-  ) {}
+    private type: UserType,
+    private description?: string | null,
+    private status?: boolean | null
+  ) { }
 
   public getId(): string {
     return this.id;
@@ -33,18 +35,15 @@ export class User {
   public getType(): UserType {
     return this.type;
   }
-}
 
-// export const stringToUserType= (input: string): UserType => {
-//   switch (input) {
-//     case "NORMAL":
-//       return UserType.NORMAL;
-//     case "ADMIN":
-//       return UserType.ADMIN;
-//     default:
-//       throw new InvalidParameterError("Invalid user role");
-//   }
-// };
+  public getDescription(): string | null | undefined {
+    return this.description;
+  }
+
+  public getStatus(): boolean | null | undefined {
+    return this.status;
+  }
+}
 
 export enum UserType {
   BAND = "BAND",

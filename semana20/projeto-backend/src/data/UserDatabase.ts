@@ -12,6 +12,8 @@ export class UserDatabase extends BaseDataBase {
         dbModel.name,
         dbModel.email,
         dbModel.nickname,
+        dbModel.description,
+        dbModel.status,
         dbModel.password,
         dbModel.type
       )
@@ -20,16 +22,27 @@ export class UserDatabase extends BaseDataBase {
 
   public async createUser(user: User): Promise<void> {
     await super.getConnection().raw(`
-        INSERT INTO ${this.tableName} (id, name, email, nickname, password, type)
+        INSERT INTO ${this.tableName} (id, name, email, nickname, description, status, password, type)
         VALUES (
           '${user.getId()}',
           '${user.getName()}',
           '${user.getEmail()}', 
-          '${user.getNickname()}', 
+          '${user.getNickname()}',
+          '${user.getDescription()}', 
+          '${this.booleanToString(user.getStatus() as boolean)}', 
           '${user.getPassword()}', 
           '${user.getType()}'
         )`);
   }
+
+  public stringToBoolean = (input: string): boolean => {
+    return input === "1" ? true : false
+  }
+  
+  public booleanToString = (input: boolean): string => {
+    return input ? "1" : "0"
+  }
+  
 
   public async getUserByEmail(email: string): Promise<User | undefined> {
     const result = await super.getConnection().raw(`

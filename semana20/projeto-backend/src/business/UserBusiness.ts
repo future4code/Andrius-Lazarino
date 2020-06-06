@@ -116,6 +116,37 @@ export class UserBusiness {
     return { accessToken };
   }
 
+  public async signupBand(
+    name: string,
+    email: string,
+    nickname: string,
+    description: string,
+    password: string
+  ) {
+
+    if (!name || !email || !nickname || !password) {
+      throw new InvalidParameterError("Missing input");
+    }
+
+    if (email.indexOf("@") === -1) {
+      throw new InvalidParameterError("Invalid email");
+    }
+
+    if (password.length < 6) {
+      throw new InvalidParameterError("Invalid password");
+    }
+
+    const id = this.idGenerator.generate();
+    const cryptedPassword = await this.hashGenerator.hash(password);
+
+    await this.userDatabase.createUser(
+      new User(id, name, email, nickname, cryptedPassword, UserType.BAND, description, false)
+    );
+
+    return { message: `Cadastro da banda ${nickname} feito com sucesso` };
+
+  }
+
   public async login(email: string, password: string) {
     if (!email || !password) {
       throw new InvalidParameterError("Missing input");

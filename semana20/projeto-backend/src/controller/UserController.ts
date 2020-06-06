@@ -49,6 +49,21 @@ export class UserController {
         req.body.password,
         req.headers.authorization as string
       );
+      res.status(200).send({message: `Usuário ${req.body.name} cadastrado como admin`});
+    } catch (err) {
+      res.status(err.errorCode || 400).send({ message: err.message });
+    }
+  }
+
+  async signupBand(req: Request, res: Response) {
+    try {
+      const result = await UserController.UserBusiness.signupBand(
+        req.body.name,
+        req.body.email,
+        req.body.nickname,
+        req.body.description,
+        req.body.password,
+      );
       res.status(200).send(result);
     } catch (err) {
       res.status(err.errorCode || 400).send({ message: err.message });
