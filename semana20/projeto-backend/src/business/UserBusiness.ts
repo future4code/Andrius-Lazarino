@@ -147,12 +147,12 @@ export class UserBusiness {
 
   }
 
-  public async login(email: string, password: string) {
-    if (!email || !password) {
+  public async login(emailOrNickname: string, password: string) {
+    if (!emailOrNickname || !password) {
       throw new InvalidParameterError("Missing input");
     }
 
-    const user = await this.userDatabase.getUserByEmail(email);
+    const user = await this.userDatabase.getUserByEmailOrNickname(emailOrNickname);
 
     if (!user) {
       throw new NotFoundError("User not found");
@@ -179,5 +179,39 @@ export class UserBusiness {
     });
 
     return { accessToken };
+  }
+
+  public async getAllBands(authorization: string) {
+    if (this.tokenGenerator.verify(authorization).type !== UserType.ADMIN) {
+      throw new GenericError("Você não é um usuário administrador")
+    }
+    const result = await this.userDatabase.getUsers(UserType.BAND)
+    const resultMap = result.map(band => {
+      return {
+        name: band.getName(),
+        email: band.getEmail(),
+        nickname: band.getNickname(),
+        status: band.getStatus()
+      }
+    })
+    return resultMap
+  }
+
+  public async aproveBand(authorization: string, status: boolean, email) {
+    if (this.tokenGenerator.verify(authorization).type !== UserType.ADMIN) {
+      throw new GenericError("Você não é um usuário administrador")
+    }
+    const band = await this.userDatabase.getUserByEmailOrNickname(email)
+    if (!band) {
+      throw new GenericError("Essa banda não existe")
+    } else if (band.getStatus() !== true) {
+      // console.log(band.getStatus())
+      const result = await this.userDatabase.setStatus(status, email)
+      // console.log(result)
+      return result
+    } else {
+      throw new GenericError("Essa banda já está aprovada")
+    }
+
   }
 }

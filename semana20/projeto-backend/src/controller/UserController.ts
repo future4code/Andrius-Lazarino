@@ -71,13 +71,33 @@ export class UserController {
   }
 
   public async login(req: Request, res: Response) {
-    const email = req.body.email;
+    const emailOrNickname = req.body.emailOrNickname;
     const password = req.body.password;
     try {
-      const result = await UserController.UserBusiness.login(email, password);
+      const result = await UserController.UserBusiness.login(emailOrNickname, password);
       res.status(200).send(result);
     } catch (err) {
       res.status(err.errorCode || 400).send({ message: err.message });
+    }
+  }
+
+  public async getAllBands(req: Request, res: Response) {
+    try {
+      const result = await UserController.UserBusiness.getAllBands(req.headers.authorization as string)
+
+      res.status(200).send(result)
+    } catch (err) {
+      res.status(err.errorCode || 400).send({message: err.message})
+    }
+  }
+
+  public async aproveBand(req: Request, res: Response) {
+    try {
+      const result = await UserController.UserBusiness.aproveBand(req.headers.authorization as string, true, req.body.email)
+
+      res.status(200).send({message: "Banda aprovada com sucesso"})
+    } catch(err) {
+      res.status(err.errorCode || 400).send({message: err.message})
     }
   }
 }

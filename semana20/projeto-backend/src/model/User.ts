@@ -51,3 +51,11 @@ export enum UserType {
   FREE = "FREE",
   ADMIN = "ADMIN"
 }
+
+export const  numberToBoolean = (input: number): boolean => {
+  return input === 1 ? true : false
+}
+
+export const booleanToString = (input: boolean): string => {
+  return input ? "1" : "0"
+}

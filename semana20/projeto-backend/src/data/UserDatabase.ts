@@ -1,10 +1,12 @@
 import { BaseDataBase } from "./BaseDatabase";
-import { User } from "../model/User";
+import { User, UserType, numberToBoolean, booleanToString } from "../model/User";
 
 export class UserDatabase extends BaseDataBase {
   protected tableName: string = "SpotenuUsers";
 
   private toModel(dbModel?: any): User | undefined {
+    // console.log(dbModel.status)
+    // console.log(stringToBoolean(dbModel.status))
     return (
       dbModel &&
       new User(
@@ -12,10 +14,10 @@ export class UserDatabase extends BaseDataBase {
         dbModel.name,
         dbModel.email,
         dbModel.nickname,
-        dbModel.description,
-        dbModel.status,
         dbModel.password,
-        dbModel.type
+        dbModel.type,
+        dbModel.description,
+        numberToBoolean(dbModel.status)
       )
     );
   }
@@ -29,25 +31,55 @@ export class UserDatabase extends BaseDataBase {
           '${user.getEmail()}', 
           '${user.getNickname()}',
           '${user.getDescription()}', 
-          '${this.booleanToString(user.getStatus() as boolean)}', 
+          '${booleanToString(user.getStatus() as boolean)}', 
           '${user.getPassword()}', 
           '${user.getType()}'
         )`);
   }
 
-  public stringToBoolean = (input: string): boolean => {
-    return input === "1" ? true : false
-  }
-  
-  public booleanToString = (input: boolean): string => {
-    return input ? "1" : "0"
-  }
-  
-
-  public async getUserByEmail(email: string): Promise<User | undefined> {
+  public async getUsers(type: UserType): Promise<User[]> {
     const result = await super.getConnection().raw(`
-      SELECT * from ${this.tableName} WHERE email = '${email}'
+       SELECT * FROM ${this.tableName} WHERE type = "${type}";
+    `)
+    return result[0].map(user => {
+      return new User(
+        user.id,
+        user.name,
+        user.email,
+        user.nickname,
+        user.password,
+        user.type,
+        user.description,
+        numberToBoolean(user.status)
+        // this.stringToBoolean(user.status)
+      )
+    })
+  }
+
+  public async setStatus(status: boolean, email: string): Promise<void> {
+    await super.getConnection().raw(`
+    UPDATE SpotenuUsers SET status = "${booleanToString(status)}" WHERE email = "${email}";
+    `)
+  }
+
+  // public stringToBoolean = (input: string): boolean => {
+  //   return input === "1" ? true : false
+  // }
+
+  // public booleanToString = (input: boolean): string => {
+  //   return input ? "1" : "0"
+  // }
+
+
+  public async getUserByEmailOrNickname(emailOrNickname: string): Promise<User | undefined> {
+    let result = await super.getConnection().raw(`
+      SELECT * from ${this.tableName} WHERE email = '${emailOrNickname}'
       `);
+    if (!result[0][0]) {
+      result = await super.getConnection().raw(`
+      SELECT * from ${this.tableName} WHERE nickname = '${emailOrNickname}'
+      `);
+    }
     return this.toModel(result[0][0]);
   }
 
