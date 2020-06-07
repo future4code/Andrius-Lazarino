@@ -1,41 +1,28 @@
 import { BaseDataBase } from "./BaseDatabase";
 import { User, UserType, numberToBoolean, booleanToString } from "../model/User";
+import { Genre } from "../model/Genre";
 
-export class UserDatabase extends BaseDataBase {
-  protected tableName: string = "SpotenuUsers";
+export class GenreDatabase extends BaseDataBase {
+  protected tableName: string = "SpotenuGenre";
 
-  private toModel(dbModel?: any): User | undefined {
-    // console.log(dbModel.status)
-    // console.log(stringToBoolean(dbModel.status))
+  private toModel(dbModel?: any): Genre | undefined {
     return (
       dbModel &&
-      new User(
+      new Genre(
         dbModel.id,
-        dbModel.name,
-        dbModel.email,
-        dbModel.nickname,
-        dbModel.password,
-        dbModel.type,
-        dbModel.description,
-        numberToBoolean(dbModel.status)
+        dbModel.name
       )
     );
   }
 
-//   public async createUser(user: User): Promise<void> {
-//     await super.getConnection().raw(`
-//         INSERT INTO ${this.tableName} (id, name, email, nickname, description, status, password, type)
-//         VALUES (
-//           '${user.getId()}',
-//           '${user.getName()}',
-//           '${user.getEmail()}', 
-//           '${user.getNickname()}',
-//           '${user.getDescription()}', 
-//           '${booleanToString(user.getStatus() as boolean)}', 
-//           '${user.getPassword()}', 
-//           '${user.getType()}'
-//         )`);
-//   }
+  public async createGenre(genre: Genre): Promise<void> {
+    await super.getConnection().raw(`
+        INSERT INTO ${this.tableName} (id, name)
+        VALUES (
+          '${genre.getId()}',
+          '${genre.getName()}'
+        )`);
+  }
 
 //   public async getUsers(type: UserType): Promise<User[]> {
 //     const result = await super.getConnection().raw(`
