@@ -1,5 +1,3 @@
-import { InvalidParameterError } from "../errors/InvalidParameterError";
-
 export class User {
   constructor(
     private id: string,

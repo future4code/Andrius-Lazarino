@@ -15,38 +15,6 @@ export class UserBusiness {
     private idGenerator: IdGenerator
   ) { }
 
-  // public async signup(
-  //   name: string,
-  //   email: string,
-  //   password: string,
-  //   role: string
-  // ) {
-  //   if (!name || !email || !password || !role) {
-  //     throw new InvalidParameterError("Missing input");
-  //   }
-
-  //   if (email.indexOf("@") === -1) {
-  //     throw new InvalidParameterError("Invalid email");
-  //   }
-
-  //   if (password.length < 6) {
-  //     throw new InvalidParameterError("Invalid password");
-  //   }
-
-  //   const id = this.idGenerator.generate();
-  //   const cryptedPassword = await this.hashGenerator.hash(password);
-
-  //   await this.userDatabase.createUser(
-  //     new User(id, name, email, cryptedPassword, stringToUserRole(role))
-  //   );
-
-  //   const accessToken = this.tokenGenerator.generate({
-  //     id,
-  //     role,
-  //   });
-  //   return { accessToken };
-  // }
-
   public async signupListener(
     name: string,
     email: string,

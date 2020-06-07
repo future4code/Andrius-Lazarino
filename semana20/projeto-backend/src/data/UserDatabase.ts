@@ -5,8 +5,6 @@ export class UserDatabase extends BaseDataBase {
   protected tableName: string = "SpotenuUsers";
 
   private toModel(dbModel?: any): User | undefined {
-    // console.log(dbModel.status)
-    // console.log(stringToBoolean(dbModel.status))
     return (
       dbModel &&
       new User(
@@ -51,7 +49,6 @@ export class UserDatabase extends BaseDataBase {
         user.type,
         user.description,
         numberToBoolean(user.status)
-        // this.stringToBoolean(user.status)
       )
     })
   }
@@ -61,15 +58,6 @@ export class UserDatabase extends BaseDataBase {
     UPDATE SpotenuUsers SET status = "${booleanToString(status)}" WHERE email = "${email}";
     `)
   }
-
-  // public stringToBoolean = (input: string): boolean => {
-  //   return input === "1" ? true : false
-  // }
-
-  // public booleanToString = (input: boolean): string => {
-  //   return input ? "1" : "0"
-  // }
-
 
   public async getUserByEmailOrNickname(emailOrNickname: string): Promise<User | undefined> {
     let result = await super.getConnection().raw(`
