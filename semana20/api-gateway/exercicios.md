@@ -19,3 +19,14 @@ Entrada: Andrius Saida: true
 
 
 ### Exercício 2
+4) https://9jff8iu6s6.execute-api.us-east-1.amazonaws.com/v2
+
+5) https://ag776hh8b8.execute-api.us-east-1.amazonaws.com/v3/signup
+Entrada:
+{
+    "name":"PS4",
+    "photo":"http://urlphotops4.com",
+    "price": 1299
+}
+
+6)

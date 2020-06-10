@@ -2,6 +2,8 @@ import dotenv from "dotenv"
 import knex from "knex";
 import Knex from "knex";
 
+dotenv.config();
+
 export abstract class BaseDataBase {
     protected abstract tableName: string;
   

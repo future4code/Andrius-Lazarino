@@ -1,25 +1,31 @@
 import { BaseDataBase } from "./BaseDatabase";
+import { Product } from "../model/product";
 
 
-export class GenreDatabase extends BaseDataBase {
-  protected tableName: string = "SpotenuGenre";
+export class ProductDatabase extends BaseDataBase {
+    protected tableName: string = "products";
 
-  private toModel(dbModel?: any): Genre | undefined {
-    return (
-      dbModel &&
-      new Genre(
-        dbModel.id,
-        dbModel.name
-      )
-    );
-  }
+      private toModel(dbModel?: any): Product | undefined {
+        return (
+          dbModel &&
+          new Product(
+            dbModel.id,
+            dbModel.name,
+            dbModel.photo,
+            dbModel.price
+          )
+        );
+      }
 
-  public async createProduct(genre: Genre): Promise<void> {
-    // await super.getConnection().raw(`
-    //     INSERT INTO ${this.tableName} (id, name)
-    //     VALUES (
-    //       '${genre.getId()}',
-    //       '${genre.getName()}'
-    //     )`);
-  }
+    public async createProduct(product: Product): Promise<void> {
+        // console.log(product)
+        await super.getConnection().raw(`
+            INSERT INTO ${this.tableName} (id, name, photo, price)
+            VALUES (
+              '${product.getId()}',
+              '${product.getName()}',
+              '${product.getPhoto()}',
+              '${product.getPrice()}'
+            )`);
+    }
 }
