@@ -20,4 +20,9 @@ export class ProductBusiness {
       new Product(id, name, photo, price)
     );
   }
+  public async getProduct(id: string) {
+
+    const result = await this.productDatabase.getProduct(id)
+    return result
+  }
 }

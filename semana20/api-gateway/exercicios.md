@@ -29,4 +29,6 @@ Entrada:
     "price": 1299
 }
 
-6)
+6) https://ag776hh8b8.execute-api.us-east-1.amazonaws.com/v4/product?id=1c276da6-2368-4857-a40e-735b129232b3
+
+É mais dificil lembrar todos os passos, tem tantas funções lá que parece que não sei nada.

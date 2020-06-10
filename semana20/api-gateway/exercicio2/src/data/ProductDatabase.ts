@@ -28,4 +28,11 @@ export class ProductDatabase extends BaseDataBase {
               '${product.getPrice()}'
             )`);
     }
+
+    public async getProduct(id: string): Promise<Product> {
+        let result = await super.getConnection().raw(`
+            SELECT * FROM ${this.tableName} WHERE id = "${id}";`);
+            result = result[0][0]
+        return new Product(result.id, result.name, result.photo, result.price)
+    }
 }
