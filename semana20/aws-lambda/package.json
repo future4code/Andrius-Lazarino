@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsc && node ./build/exercicio3.js",
-    "start:dev": "ts-node-dev ./exercicio3.ts",
+    "start": "tsc && node ./build/exercicio4.js",
+    "start:dev": "ts-node-dev ./exercicio4.ts",
     "build": "rm -rf build && tsc"
   },
   "author": "Andrius",
