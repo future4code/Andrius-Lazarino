@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { UserBusiness } from "../business/FileBusiness";
+import { S3Service } from "../services/S3Service";
 
 
 export class FileController {
@@ -13,7 +13,14 @@ export class FileController {
         throw new Error("Você precisa enviar um arquivo")
       }
 
-      const s3
+      const s3Service = new S3Service()
+
+      const result = await s3Service.uploadFile({
+        name: file.name,
+        file: file.data
+      })
+
+      res.status(200).send(result)
 
     } catch (err) {
       res.status(400).send({

@@ -15,7 +15,7 @@ function App() {
       const data = new FormData()
       data.append("file", event.target.files[0])
 
-      const res = await axios.put("http://localhost:3001/files/upload")
+      const res = await axios.put("http://localhost:3000/file/upload", data)
 
       setIsLink(res.data.link)
       setIsLoading(false)

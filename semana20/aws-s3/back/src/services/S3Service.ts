@@ -9,7 +9,7 @@ export class S3Service {
     public async uploadFile(input: UploadFileInput): Promise<UploadFileOutput> {
         const result = await this.s3
             .upload({
-                Bucket: "bucket-sagan",
+                Bucket: "bucketaula67",
                 Key: input.name,
                 Body: input.file
             })
