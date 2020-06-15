@@ -1,0 +1,30 @@
+Exercício 1
+
+b) { message: "Missing input" }
+
+c) { message: "Missing input" }
+
+d) { message: "Missing input" }
+
+e) { message: "Invalid password" }
+
+f) { message: "User is correct" }
+
+g) Devemos alterar o statusCode do:
+
+if (!user.email) { return {
+      statusCode: 400,
+      body: JSON.stringify({ message: "Missing email" })
+    };
+  }
+
+h)
+{
+  "user": {
+		"info": {
+			"name": "Astrodev",
+			"email": "astrodev@f4.com.br",
+			"password": "123456"
+		}
+  }
+}
