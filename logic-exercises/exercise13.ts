@@ -1,5 +1,4 @@
 function verifyInteger(num:number){
-    console.log(String(num).length)
+    return String(num).length
 }
-
-verifyInteger(3278)
+console.log(verifyInteger(3278))
