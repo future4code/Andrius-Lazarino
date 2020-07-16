@@ -1,4 +1,4 @@
-import { verifyMissingNumber } from "../exercise14"
+import { verifyMissingNumber } from "../semana22/exercise14"
 
 test("Search missing number", () => {
   const arrayMock1 = [2,6,3,4,5,8,9,11,10,13,12]
