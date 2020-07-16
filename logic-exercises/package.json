@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node ./node_modules/jest/bin/jest.js",
+    "start": "tsc ./semana25/exercise4.ts && node ./semana25/exercise4.js",
     "start:dev": "ts-node-dev ./src/index.ts"
   },
   "author": "",
